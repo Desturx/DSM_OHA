@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="BookReViewGenNHibernate"
+		                   namespace="BookReViewGenNHibernate.EN.BookReview">
+		    
+		    
+			
+				<class name="Club_lecEN" table="Club_lec"> 
+				  	
+						<id name="ClubID" column="clubIDClub_lec" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Mensualidad" type="date"> 
+						<column name="mensualidad"  not-null="true"/>
+					</property>
+					<property name="PaginaActual" type="integer"> 
+						<column name="paginaActual"  not-null="true"/>
+					</property>
+					<property name="Estado" type="boolean"> 
+						<column name="estado"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="Lectores" table="[club_lec_usuario]"  >
+							<key>
+								
+									<column name="FK_clubIDClub_lec_idClub_lec"/> 
+							</key>
+      						<many-to-many class="BookReViewGenNHibernate.EN.BookReview.UsuarioEN">
+									<column name="FK_usuarioIDUsuario_idLector"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<many-to-one name="Lectura" class="BookReViewGenNHibernate.EN.BookReview.LibroEN" >	
+								<column name="FK_libroIDLibro_idLibro"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="Club_lecENReadAllHQL">from Club_lecEN</query>
+		  <query name="Club_lecENfiltraPagsLeidasHQL"><![CDATA[ select com FROM Comentario as com where com.Comentador.Club.paginaActual >= com.paginasLeidas]]></query>
+		</hibernate-mapping>
+	

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="BookReViewGenNHibernate"
+		                   namespace="BookReViewGenNHibernate.EN.BookReview">
+		    
+		    
+			
+				<class name="UsuarioEN" table="Usuario"> 
+				  	
+						<id name="UsuarioID" column="usuarioIDUsuario" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Password" type="string"> 
+						<column name="password"  not-null="true"/>
+					</property>
+					<property name="Mail" type="string"> 
+						<column name="mail"  unique="true" not-null="true"/>
+					</property>
+					<property name="Fotoperfil" type="string"> 
+						<column name="fotoperfil"  not-null="true"/>
+					</property>
+					<property name="Nombre" type="string"> 
+						<column name="nombre"  not-null="true"/>
+					</property>
+					<property name="Dineroventa" type="double"> 
+						<column name="dineroventa"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="SolicitudesRealizadas" >
+							<key>
+							
+								
+								<column name="FK_usuarioIDUsuario_idSolicitante"/>
+					      	</key>
+							<one-to-many class="BookReViewGenNHibernate.EN.BookReview.SolicitudEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="SolicitudesRecibidas" >
+							<key>
+							
+								
+								<column name="FK_usuarioIDUsuario_idSolicitado"/>
+					      	</key>
+							<one-to-many class="BookReViewGenNHibernate.EN.BookReview.SolicitudEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Clubs" table="[club_lec_usuario]" inverse="true" >
+							<key>
+								
+									<column name="FK_usuarioIDUsuario_idLector"/> 
+							</key>
+      						<many-to-many class="BookReViewGenNHibernate.EN.BookReview.Club_lecEN">
+									<column name="FK_clubIDClub_lec_idClub_lec"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="PasarelaPago" >
+							<key>
+							
+								
+								<column name="FK_usuarioIDUsuario_idUsuario"/>
+					      	</key>
+							<one-to-many class="BookReViewGenNHibernate.EN.BookReview.CompraEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Comentario" >
+							<key>
+							
+								
+								<column name="FK_usuarioIDUsuario_idComentador"/>
+					      	</key>
+							<one-to-many class="BookReViewGenNHibernate.EN.BookReview.ComentarioEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Libros" table="[libro_usuario]" inverse="true" >
+							<key>
+								
+									<column name="FK_usuarioIDUsuario_idUsuario"/> 
+							</key>
+      						<many-to-many class="BookReViewGenNHibernate.EN.BookReview.LibroEN">
+									<column name="FK_libroIDLibro_idLibro"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="LibrosCreado" >
+							<key>
+							
+								
+								<column name="FK_usuarioIDUsuario_idUsuario_0"/>
+					      	</key>
+							<one-to-many class="BookReViewGenNHibernate.EN.BookReview.LibroEN"/>
+					    </bag>
+					
+			
+			
+		  			
+						<bag name="Puntuacion" >
+							<key>
+							
+								
+								<column name="FK_usuarioIDUsuario_idUsuario"/>
+					      	</key>
+							<one-to-many class="BookReViewGenNHibernate.EN.BookReview.PuntuacionEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="ListaTipo" >
+							<key>
+							
+								
+								<column name="FK_usuarioIDUsuario_idUsuario"/>
+					      	</key>
+							<one-to-many class="BookReViewGenNHibernate.EN.BookReview.ListaEN"/>
+					    </bag>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="UsuarioENReadAllHQL">from UsuarioEN</query>
+		</hibernate-mapping>
+	

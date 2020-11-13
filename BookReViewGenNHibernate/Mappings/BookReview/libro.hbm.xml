@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="BookReViewGenNHibernate"
+		                   namespace="BookReViewGenNHibernate.EN.BookReview">
+		    
+		    
+			
+				<class name="LibroEN" table="Libro"> 
+				  	
+						<id name="LibroID" column="libroIDLibro" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Autor" type="string"> 
+						<column name="autor"  not-null="true"/>
+					</property>
+					<property name="Nombre" type="string"> 
+						<column name="nombre"  not-null="true"/>
+					</property>
+					<property name="Genero" type="string"> 
+						<column name="genero"  not-null="true"/>
+					</property>
+					<property name="Fechapubli" type="date"> 
+						<column name="fechapubli"  not-null="true"/>
+					</property>
+					<property name="Idioma" type="string"> 
+						<column name="idioma"  not-null="true"/>
+					</property>
+					<property name="Portada" type="string"> 
+						<column name="portada"  not-null="true"/>
+					</property>
+					<property name="Puntuacion" type="double"> 
+						<column name="puntuacion"  not-null="true"/>
+					</property>
+					<property name="Enlacedecompra" type="string"> 
+						<column name="enlacedecompra"  not-null="true"/>
+					</property>
+					<property name="Paginas" type="integer"> 
+						<column name="paginas"  not-null="true"/>
+					</property>
+					<property name="Precio" type="double"> 
+						<column name="precio"  not-null="true"/>
+					</property>
+					<property name="Compras" type="integer"> 
+						<column name="compras"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="SolicitudesRealizada" >
+							<key>
+							
+								
+								<column name="FK_libroIDLibro_idSolicitante"/>
+					      	</key>
+							<one-to-many class="BookReViewGenNHibernate.EN.BookReview.CompraEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Listainfo" table="[libro_lista]"  >
+							<key>
+								
+									<column name="FK_libroIDLibro_idListado"/> 
+							</key>
+      						<many-to-many class="BookReViewGenNHibernate.EN.BookReview.ListaEN">
+									<column name="FK_idLista_idLista"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Opinion" >
+							<key>
+							
+								
+								<column name="FK_libroIDLibro_idLibro"/>
+					      	</key>
+							<one-to-many class="BookReViewGenNHibernate.EN.BookReview.ComentarioEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Usuarios" table="[libro_usuario]"  >
+							<key>
+								
+									<column name="FK_libroIDLibro_idLibro"/> 
+							</key>
+      						<many-to-many class="BookReViewGenNHibernate.EN.BookReview.UsuarioEN">
+									<column name="FK_usuarioIDUsuario_idUsuario"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<many-to-one name="Creador" class="BookReViewGenNHibernate.EN.BookReview.UsuarioEN" >	
+								<column name="FK_usuarioIDUsuario_idUsuario_0"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="Clublibro" >
+							<key>
+							
+								
+								<column name="FK_libroIDLibro_idLibro"/>
+					      	</key>
+							<one-to-many class="BookReViewGenNHibernate.EN.BookReview.Club_lecEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Puntuacion_0" >
+							<key>
+							
+								
+								<column name="FK_libroIDLibro_idLibro"/>
+					      	</key>
+							<one-to-many class="BookReViewGenNHibernate.EN.BookReview.PuntuacionEN"/>
+					    </bag>
+					
+			
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="LibroENReadAllHQL">from LibroEN</query>
+		  <query name="LibroENfiltrarListaLecturaHQL"><![CDATA[ select lib FROM LibroEN as lib inner join lib.Usuario as us where us.Club.LibroActual = lib.Nombre]]></query>
+		</hibernate-mapping>
+	

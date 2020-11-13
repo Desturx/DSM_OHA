@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="BookReViewGenNHibernate"
+		                   namespace="BookReViewGenNHibernate.EN.BookReview">
+		    
+		    
+			
+				<class name="PuntuacionEN" table="puntuacion"> 
+				  	
+						<id name="Id" column="idPuntuacion" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Puntuacion" type="integer"> 
+						<column name="puntuacion"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<many-to-one name="Usuario" class="BookReViewGenNHibernate.EN.BookReview.UsuarioEN" >	
+								<column name="FK_usuarioIDUsuario_idUsuario"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Libro" class="BookReViewGenNHibernate.EN.BookReview.LibroEN" >	
+								<column name="FK_libroIDLibro_idLibro"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="PuntuacionENReadAllHQL">from PuntuacionEN</query>
+		</hibernate-mapping>
+	

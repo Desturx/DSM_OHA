@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+		<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		  <PropertyGroup>
+		    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		    <ProductVersion>8.0.30703</ProductVersion>
+		    <SchemaVersion>2.0</SchemaVersion>
+		    <ProjectGuid>{66C66636-FD6A-4A3F-A7C5-FE88BBA117AF}</ProjectGuid>
+		    <OutputType>Library</OutputType>
+		    <AppDesignerFolder>Properties</AppDesignerFolder>
+		    <RootNamespace>BookReViewGenNHibernate</RootNamespace>
+		    <AssemblyName>BookReViewGenNHibernate</AssemblyName>
+		    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+		    <FileAlignment>512</FileAlignment>
+		    <PublishUrl>publish\</PublishUrl>
+		    <Install>true</Install>
+		    <InstallFrom>Disk</InstallFrom>
+		    <UpdateEnabled>false</UpdateEnabled>
+		    <UpdateMode>Foreground</UpdateMode>
+		    <UpdateInterval>7</UpdateInterval>
+		    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+		    <UpdatePeriodically>false</UpdatePeriodically>
+		    <UpdateRequired>false</UpdateRequired>
+		    <MapFileExtensions>true</MapFileExtensions>
+		    <ApplicationRevision>0</ApplicationRevision>
+		    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+		    <IsWebBootstrapper>false</IsWebBootstrapper>
+		    <UseApplicationTrust>false</UseApplicationTrust>
+		    <BootstrapperEnabled>true</BootstrapperEnabled>
+		  </PropertyGroup>
+		  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		    <DebugSymbols>true</DebugSymbols>
+		    <DebugType>full</DebugType>
+		    <Optimize>false</Optimize>
+		    <OutputPath>bin\Debug\</OutputPath>
+		    <DefineConstants>DEBUG;TRACE</DefineConstants>
+		    <ErrorReport>prompt</ErrorReport>
+		    <WarningLevel>4</WarningLevel>
+		  </PropertyGroup>
+		  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		    <DebugType>pdbonly</DebugType>
+		    <Optimize>true</Optimize>
+		    <OutputPath>bin\Release\</OutputPath>
+		    <DefineConstants>TRACE</DefineConstants>
+		    <ErrorReport>prompt</ErrorReport>
+		    <WarningLevel>4</WarningLevel>
+		  </PropertyGroup>
+		<ItemGroup>
+		    <Reference Include="Castle.DynamicProxy2, Version=2.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\BookReViewGenNHibernate\AppLib\Castle.DynamicProxy2.dll</HintPath>
+		    </Reference>
+		    <Reference Include="LinFu.DynamicProxy, Version=1.0.3.14911, Culture=neutral, PublicKeyToken=62a6874124340d6e, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\BookReViewGenNHibernate\AppLib\LinFu.DynamicProxy.dll</HintPath>
+		    </Reference>
+		    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\BookReViewGenNHibernate\AppLib\NHibernate.dll</HintPath>
+		    </Reference>
+		    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\BookReViewGenNHibernate\AppLib\NHibernate.ByteCode.Castle.dll</HintPath>
+		    </Reference>
+		    <Reference Include="NHibernate.ByteCode.LinFu, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\BookReViewGenNHibernate\AppLib\NHibernate.ByteCode.LinFu.dll</HintPath>
+		    </Reference>
+		    <Reference Include="Newtonsoft.Json, Version=4.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\BookReViewGenNHibernate\AppLib\Newtonsoft.Json.dll</HintPath>
+		    </Reference>
+		     <Reference Include="jose-jwt, Version=4.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\BookReViewGenNHibernate\AppLib\jose-jwt.dll</HintPath>
+		    </Reference>
+		    <Reference Include="System" />
+		    <Reference Include="System.Core">
+		      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+		    </Reference>
+		    
+		    <Reference Include="System.Transactions" />
+		    <Reference Include="System.Xml.Linq">
+		      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+		    </Reference>
+		    <Reference Include="System.Data.DataSetExtensions">
+		      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+		    </Reference>
+		    <Reference Include="System.Data" />
+		    <Reference Include="System.Xml" />
+		</ItemGroup>
+		
+		<ItemGroup>
+		    <Content Include="..\BookReViewGenNHibernate\AppLib\Antlr3.Runtime.dll" />
+		    <Content Include="..\BookReViewGenNHibernate\AppLib\Castle.DynamicProxy2.dll" />
+		    <Content Include="..\BookReViewGenNHibernate\AppLib\Iesi.Collections.dll" />
+		    <Content Include="..\BookReViewGenNHibernate\AppLib\LinFu.DynamicProxy.dll" />
+		    <Content Include="..\BookReViewGenNHibernate\AppLib\log4net.dll" />
+		    <Content Include="..\BookReViewGenNHibernate\AppLib\NHibernate.ByteCode.Castle.dll" />
+		    <Content Include="..\BookReViewGenNHibernate\AppLib\NHibernate.ByteCode.LinFu.dll" />
+		    <Content Include="..\BookReViewGenNHibernate\AppLib\NHibernate.dll" />
+		    <Content Include="..\BookReViewGenNHibernate\AppLib\nunit.core.dll" />
+		    <Content Include="..\BookReViewGenNHibernate\AppLib\nunit.framework.dll" />
+  		    <Content Include="..\BookReViewGenNHibernate\AppLib\jose-jwt.dll" />
+  		</ItemGroup>
+  		
+		<ItemGroup>
+			<Compile Include="NHibernateHelper.cs" />
+		    <Compile Include="Utils\Util.cs" />
+		    <Compile Include="Exceptions\ModelException.cs"/>
+		    <Compile Include="Exceptions\DataLayerException.cs"/>
+		    
+	<Compile Include="CAD\BasicCAD.cs"/>
+	<Compile Include="CP\BasicCP.cs"/>
+	<Compile Include="EN\BookReview\UsuarioEN.cs" />
+	<Compile Include="CEN\BookReview\UsuarioCEN.cs" />
+	<Compile Include="CAD\BookReview\IUsuarioCAD.cs" />
+	<Compile Include="CAD\BookReview\UsuarioCAD.cs" />
+	<Compile Include="CP\BookReview\UsuarioCP.cs" />
+			
+			
+			
+			
+			
+			<Compile Include="CEN\BookReview\UsuarioCEN_ValidarUsuario.cs" />
+			
+			<Compile Include="CEN\BookReview\UsuarioCEN_VerPerfil.cs" />
+			
+			<Compile Include="CEN\BookReview\UsuarioCEN_GestionPerfil.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\BookReview\LibroEN.cs" />
+	<Compile Include="CEN\BookReview\LibroCEN.cs" />
+	<Compile Include="CAD\BookReview\ILibroCAD.cs" />
+	<Compile Include="CAD\BookReview\LibroCAD.cs" />
+	<Compile Include="CP\BookReview\LibroCP.cs" />
+			
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\BookReview\SolicitudEN.cs" />
+	<Compile Include="CEN\BookReview\SolicitudCEN.cs" />
+	<Compile Include="CAD\BookReview\ISolicitudCAD.cs" />
+	<Compile Include="CAD\BookReview\SolicitudCAD.cs" />
+	<Compile Include="CP\BookReview\SolicitudCP.cs" />
+			
+			
+			
+			
+			
+			<Compile Include="CEN\BookReview\SolicitudCEN_Aceptar.cs" />
+			
+	<Compile Include="EN\BookReview\Club_lecEN.cs" />
+	<Compile Include="CEN\BookReview\Club_lecCEN.cs" />
+	<Compile Include="CAD\BookReview\IClub_lecCAD.cs" />
+	<Compile Include="CAD\BookReview\Club_lecCAD.cs" />
+	<Compile Include="CP\BookReview\Club_lecCP.cs" />
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\BookReview\ComentarioEN.cs" />
+	<Compile Include="CEN\BookReview\ComentarioCEN.cs" />
+	<Compile Include="CAD\BookReview\IComentarioCAD.cs" />
+	<Compile Include="CAD\BookReview\ComentarioCAD.cs" />
+	<Compile Include="CP\BookReview\ComentarioCP.cs" />
+			<Compile Include="CEN\BookReview\ComentarioCEN_New_.cs" />
+			
+			
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\BookReview\AdminEN.cs" />
+	<Compile Include="CEN\BookReview\AdminCEN.cs" />
+	<Compile Include="CAD\BookReview\IAdminCAD.cs" />
+	<Compile Include="CAD\BookReview\AdminCAD.cs" />
+	<Compile Include="CP\BookReview\AdminCP.cs" />
+			
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\BookReview\CompraEN.cs" />
+	<Compile Include="CEN\BookReview\CompraCEN.cs" />
+	<Compile Include="CAD\BookReview\ICompraCAD.cs" />
+	<Compile Include="CAD\BookReview\CompraCAD.cs" />
+	<Compile Include="CP\BookReview\CompraCP.cs" />
+			<Compile Include="CP\BookReview\CompraCP_New_.cs" />
+			
+			
+			
+			<Compile Include="CEN\BookReview\CompraCEN_Validardatos.cs" />
+			
+			<Compile Include="CEN\BookReview\CompraCEN_Mostrarmensaje.cs" />
+			
+			
+			
+			
+	<Compile Include="EN\BookReview\ListaEN.cs" />
+	<Compile Include="CEN\BookReview\ListaCEN.cs" />
+	<Compile Include="CAD\BookReview\IListaCAD.cs" />
+	<Compile Include="CAD\BookReview\ListaCAD.cs" />
+	<Compile Include="CP\BookReview\ListaCP.cs" />
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\BookReview\PuntuacionEN.cs" />
+	<Compile Include="CEN\BookReview\PuntuacionCEN.cs" />
+	<Compile Include="CAD\BookReview\IPuntuacionCAD.cs" />
+	<Compile Include="CAD\BookReview\PuntuacionCAD.cs" />
+	<Compile Include="CP\BookReview\PuntuacionCP.cs" />
+			
+			
+			
+	<Compile Include="Enumerated\BookReview\TiposolicitudEnum.cs" />
+	<Compile Include="Enumerated\BookReview\TipolistaEnum.cs" />
+	
+	
+
+		    
+	
+
+		    <Compile Include="Properties\AssemblyInfo.cs" />
+		    <Compile Include="Properties\Settings.Designer.cs">
+		      <AutoGen>True</AutoGen>
+		      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+		      <DependentUpon>Settings.settings</DependentUpon>
+		    </Compile>
+		  </ItemGroup>
+		  <ItemGroup>
+		  
+	<EmbeddedResource Include="Mappings\BookReview\usuario.hbm.xml" />
+	<EmbeddedResource Include="Mappings\BookReview\libro.hbm.xml" />
+	<EmbeddedResource Include="Mappings\BookReview\solicitud.hbm.xml" />
+	<EmbeddedResource Include="Mappings\BookReview\club_lec.hbm.xml" />
+	<EmbeddedResource Include="Mappings\BookReview\comentario.hbm.xml" />
+	<EmbeddedResource Include="Mappings\BookReview\admin.hbm.xml" />
+	<EmbeddedResource Include="Mappings\BookReview\compra.hbm.xml" />
+	<EmbeddedResource Include="Mappings\BookReview\lista.hbm.xml" />
+	<EmbeddedResource Include="Mappings\BookReview\puntuacion.hbm.xml" />
+	
+	
+
+		  </ItemGroup>
+		  <ItemGroup>
+		    <Content Include="hibernate.cfg.xml">
+		      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		    </Content>
+		  </ItemGroup>
+		  <ItemGroup>
+		    <None Include="app.config" />
+		    <None Include="Properties\Settings.settings">
+		      <Generator>SettingsSingleFileGenerator</Generator>
+		      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		    </None>
+		        <None Include="Resources\xsd\nhibernate-configuration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\xsd\nhibernate-mapping.xsd">
+      <SubType>Designer</SubType>
+    </None>
+		  </ItemGroup>
+	 	
+		
+	
+		<ItemGroup>
+		    <ProjectReference Include="..\APIExterna\APIExterna.csproj">
+		      <Project>{4ade35c8-a0c3-49da-9e1a-11a53ca19214}</Project>
+		      <Name>APIExterna</Name>
+		    </ProjectReference>
+	    </ItemGroup>
+	    
+		  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+		  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+		       Other similar extension points exist, see Microsoft.Common.targets.
+		  <Target Name="BeforeBuild">
+		  </Target>
+		  <Target Name="AfterBuild">
+		  </Target>
+		  -->
+		</Project>

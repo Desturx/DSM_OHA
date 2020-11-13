@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="BookReViewGenNHibernate"
+		                   namespace="BookReViewGenNHibernate.EN.BookReview">
+		    
+		    
+			
+				<class name="CompraEN" table="Compra"> 
+				  	
+						<id name="CompraID" column="compraIDCompra" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Tipo_pago" type="string"> 
+						<column name="tipo_pago"  not-null="true"/>
+					</property>
+					<property name="Infotarjeta" type="string"> 
+						<column name="infotarjeta"  not-null="true"/>
+					</property>
+					<property name="Fechaped" type="date"> 
+						<column name="fechaped"  not-null="true"/>
+					</property>
+					<property name="Terminal" type="string"> 
+						<column name="terminal"  not-null="true"/>
+					</property>
+					<property name="Comercio" type="string"> 
+						<column name="comercio"  not-null="true"/>
+					</property>
+			
+			
+			
+		  			
+						<many-to-one name="Comprador" class="BookReViewGenNHibernate.EN.BookReview.UsuarioEN" >	
+								<column name="FK_usuarioIDUsuario_idUsuario"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Solicitante" class="BookReViewGenNHibernate.EN.BookReview.LibroEN" >	
+								<column name="FK_libroIDLibro_idSolicitante"/> 
+						</many-to-one>
+											 					
+			
+			
+			
+			
+			
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="CompraENReadAllHQL">from CompraEN</query>
+		</hibernate-mapping>
+	
