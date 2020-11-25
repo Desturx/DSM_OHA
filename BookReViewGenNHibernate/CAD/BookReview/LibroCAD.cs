@@ -319,35 +319,6 @@ public void PuntuarLibro (LibroEN libro)
                 SessionClose ();
         }
 }
-public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> FiltrarListaLectura ()
-{
-        System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> result;
-        try
-        {
-                SessionInitializeTransaction ();
-                //String sql = @"FROM LibroEN self where  select lib FROM LibroEN as lib inner join lib.Usuario as us where us.Club.LibroActual = lib.Nombre";
-                //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("LibroENfiltrarListaLecturaHQL");
-
-                result = query.List<BookReViewGenNHibernate.EN.BookReview.LibroEN>();
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is BookReViewGenNHibernate.Exceptions.ModelException)
-                        throw ex;
-                throw new BookReViewGenNHibernate.Exceptions.DataLayerException ("Error in LibroCAD.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-
-        return result;
-}
 //Sin e: ReadOID
 //Con e: LibroEN
 public LibroEN ReadOID (int libroID
@@ -389,6 +360,67 @@ public System.Collections.Generic.IList<LibroEN> ReadAll (int first, int size)
                                  SetFirstResult (first).SetMaxResults (size).List<LibroEN>();
                 else
                         result = session.CreateCriteria (typeof(LibroEN)).List<LibroEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is BookReViewGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new BookReViewGenNHibernate.Exceptions.DataLayerException ("Error in LibroCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> ReadFilter (double ? p_precio)
+{
+        System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM LibroEN self where select lib FROM LibroEN as lib where lib.Precio<= :p_precio order by lib.Precio desc";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("LibroENreadFilterHQL");
+                query.SetParameter ("p_precio", p_precio);
+
+                result = query.List<BookReViewGenNHibernate.EN.BookReview.LibroEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is BookReViewGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new BookReViewGenNHibernate.Exceptions.DataLayerException ("Error in LibroCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> FiltroBestSeller (string p_mail)
+{
+        System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM LibroEN self where select lib FROM LibroEN as lib WHERE lib.Creador.Mail = :p_mail order by (lib.Precio*lib.Compras) desc";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("LibroENfiltroBestSellerHQL");
+                query.SetParameter ("p_mail", p_mail);
+
+                result = query.List<BookReViewGenNHibernate.EN.BookReview.LibroEN>();
                 SessionCommit ();
         }
 

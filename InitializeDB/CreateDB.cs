@@ -89,17 +89,18 @@ public static void InitializeData ()
                 //           w DateTime(2020, 11, 21),
                 //creamos USUARIOS y ADMINS
                 UsuarioCEN usuCEN = new UsuarioCEN ();
-                int idUSU1 = usuCEN.New_ ("password", "us@alu.ua", "fotoperf", "usu1");
-                int idUSU2 = usuCEN.New_ ("password", "us2@alu.ua", "fotoperf", "usu2");
-                int idUSU3 = usuCEN.New_ ("password", "us3@alu.ua", "fotoperf", "usu3");
-
+                int idUSU1 = usuCEN.New_ ("password", "us@alu.ua", "fotoperf", "usu1", 0);
+                int idUSU2 = usuCEN.New_ ("password", "us2@alu.ua", "fotoperf", "usu2", 0);
+                int idUSU3 = usuCEN.New_ ("password", "us3@alu.ua", "fotoperf", "usu3", 0);
                 AdminCEN adCEN = new AdminCEN ();
-                int idAD1 = adCEN.New_ ("password", "us@alu.ua", "fotoperf", "Admin1", 0);
+                int idAD1 = adCEN.New_ ("password", "us4@alu.ua", "fotoperf", "Admin1", 0);
 
                 //creamos LIBROS
                 LibroCEN libCEN = new LibroCEN ();
-                int idLIB = libCEN.PublicarLibro ("Poe", "El cuervo", "Terror", new DateTime (2020, 01, 22), "ingles", "Portada", 4.4, "enlacecompra.com", 200, 50, idUSU1);
-                int idLIB2 = libCEN.PublicarLibro ("Poe", "El cuervo 2", "Terror 2", new DateTime (2020, 01, 22), "ingles 2", "Portada 2", 4.4, "enlacecompra2.com", 200, 50, idUSU3);
+                int idLIB = libCEN.PublicarLibro ("Poe", "El cuervo", "Terror", new DateTime (2020, 01, 22), "ingles", "Portada", 4.4, "enlacecompra.com", 200, 50, idUSU1, 0);
+                int idLIB2 = libCEN.PublicarLibro ("Poe", "El cuervo 2", "Terror 2", new DateTime (2020, 01, 22), "ingles 2", "Portada 2", 4.4, "enlacecompra2.com", 200, 60, idUSU3, 0);
+                int idLIB3 = libCEN.PublicarLibro ("Poe", "El cuervo 3", "Terror 3", new DateTime (2020, 01, 22), "ingles 3", "Portada 3", 4.4, "enlacecompra3.com", 200, 300, idUSU1, 1);
+                int idLIB4 = libCEN.PublicarLibro("Poe", "El cuervo 4", "Terror 4", new DateTime(2020, 01, 22), "ingles 4", "Portada 4", 4.4, "enlacecompra4.com", 200, 30, idUSU1, 1);
 
                 //creamos PUNTUACION
                 PuntuacionCEN punCEN = new PuntuacionCEN ();
@@ -111,32 +112,98 @@ public static void InitializeData ()
 
                 //creamos COMENTARIO con un libro y usuario
                 ComentarioCEN comCEN = new ComentarioCEN ();
-                int idCOM = comCEN.New_ ("titulo", "contenido texto etc", idLIB, idUSU2, 125); //por algun motivo las paginas leidas salen como string? preguntar en clase
-
+                int idCOM = comCEN.PublicarComentario ("titulo", new DateTime (2020, 01, 22), "contenido texto etc este es amigo", idLIB, idUSU2, 125);
+                int idCOM2 = comCEN.PublicarComentario ("titulo", new DateTime (2020, 01, 22), "contenido texto etc este no es amigo", idLIB, idUSU2, 120);
                 //creamos SOLICITUD AMISTAD y la inciamos ACEPTADA
                 SolicitudCEN soliCEN = new SolicitudCEN ();
                 int idSOLI = soliCEN.CrearSolicitud (TiposolicitudEnum.aceptado, idUSU1, idUSU2);
+                //cen customizado y ver que esta pendiente
 
-                //creamos COMPRAS con usuarios
-                CompraCP compraCP = new CompraCP ();
+                //creamos LISTA
+                ListaCEN lisCEN = new ListaCEN ();
+                int idLIS = lisCEN.New_ (TipolistaEnum.favorito, idUSU1);
+
+
+
                 /* ==== NUEVA COMPRA ====*/
+                CompraCP compraCP = new CompraCP ();
                 compraCP.New_ (idUSU1, idLIB, "paypal", "87237136763-CV123", new DateTime (2020, 01, 22), "terminal", "amazon");
                 // Mostramos por pantalla con un console log que se han actualizado las compras del libro
                 LibroEN libEN = libCEN.ReadOID (idLIB); // Primero sacamos el libro actual
                 UsuarioEN usuEN = usuCEN.ReadOID (libEN.Creador.UsuarioID); // Sacamos el usuario asociado a la id del libro
-                Console.WriteLine ("Las compras del libro con nombre: " + libEN.Nombre + "son: " + libEN.Compras);
-                Console.WriteLine ("El usuario: " + usuEN.Nombre + " ha recibido " + libEN.Precio + "�. Su total ahora es de: " + usuEN.Dineroventa);
+                Console.WriteLine ("Las compras del libro con nombre \"" + libEN.Nombre + "\" son: " + libEN.Compras);
+                Console.WriteLine ("El usuario: " + usuEN.Nombre + " ha recibido " + libEN.Precio + "EUROS. Su total ahora es de: " + usuEN.Dineroventa);
+
+                /* ==== NUEVA COMPRA ====*/
+                compraCP.New_ (idUSU2, idLIB, "mastercard", "2828282828-C33", new DateTime (2020, 01, 22), "terminal2", "amazon");
+                // Mostramos por pantalla con un console log que se han actualizado las compras del libro
+                libEN = libCEN.ReadOID (idLIB); // Primero sacamos el libro actual
+                usuEN = usuCEN.ReadOID (libEN.Creador.UsuarioID); // Sacamos el usuario asociado a la id del libro
+                Console.WriteLine ("Las compras del libro con nombre \"" + libEN.Nombre + "\" son: " + libEN.Compras);
+                Console.WriteLine ("El usuario: " + usuEN.Nombre + " ha recibido " + libEN.Precio + "EUROS. Su total ahora es de: " + usuEN.Dineroventa);
+
                 /* ==== NUEVA COMPRA ====*/
                 compraCP.New_ (idUSU2, idLIB2, "mastercard", "2828282828-C33", new DateTime (2020, 01, 22), "terminal2", "amazon");
                 // Mostramos por pantalla con un console log que se han actualizado las compras del libro
                 libEN = libCEN.ReadOID (idLIB2); // Primero sacamos el libro actual
                 usuEN = usuCEN.ReadOID (libEN.Creador.UsuarioID); // Sacamos el usuario asociado a la id del libro
-                Console.WriteLine ("Las compras del libro con nombre: " + libEN.Nombre + "son: " + libEN.Compras);
-                Console.WriteLine ("El usuario: " + usuEN.Nombre + " ha recibido " + libEN.Precio + "�. Su total ahora es de: " + usuEN.Dineroventa);
+                Console.WriteLine ("Las compras del libro con nombre \"" + libEN.Nombre + "\" son: " + libEN.Compras);
+                Console.WriteLine ("El usuario: " + usuEN.Nombre + " ha recibido " + libEN.Precio + "EUROS. Su total ahora es de: " + usuEN.Dineroventa);
 
-                //creamos LISTA
-                ListaCEN lisCEN = new ListaCEN ();
-                int idLIS = lisCEN.New_ (TipolistaEnum.favorito, idUSU1);
+                // ACEPTAR SOLICITUD
+                /*
+                 * try
+                 * {
+                 *  solCEN.aceptar(idSol1);
+                 * }
+                 * catch (Exception e)
+                 * {
+                 *  System.Console.WriteLine(e.Message);
+                 * }
+                 *
+                 * solCEN.aceptar(idSol1);
+                 *
+                 * SolicitudEN solEN = new SolicitudCAD().ReadOIDDefault(idSol1);
+                 * Console.WriteLine("La solicitud ha sido aceptada");
+                 */
+
+                // ZONA FILTROS
+                Console.WriteLine ("==== FILTROS ====");
+                Console.WriteLine (":::::Lista de usuarios registrados:::::");
+                IList<UsuarioEN> listaUsus = usuCEN.ReadFilter ();
+                foreach (UsuarioEN usu in listaUsus) {
+                        Console.WriteLine ("Nombre:" + usu.Nombre + " Email:" + usu.Mail);
+                }
+                Console.WriteLine (":::::::::::::::::::::::::::::::::::::::");
+                Console.WriteLine ();
+                Console.WriteLine (":::::Filtrado de comentarios:::::");
+                Console.WriteLine ("Lista comentarios filtrados por paginas (100)");
+                IList<ComentarioEN> listaCom = comCEN.ReadFilter (100);
+                foreach (ComentarioEN com in listaCom) {
+                        Console.WriteLine ("Autor: " + com.Titulo);
+                        Console.WriteLine ("Comentario: " + com.Contenido);
+                        Console.WriteLine ();
+                }
+                Console.WriteLine (":::::::::::::::::::::::::::::::::::::::");
+                Console.WriteLine ();
+                Console.WriteLine (":::::Lista libros por precio:::::");
+                Console.WriteLine (" Un filtro por los mas caros a partir de un precio (establecido por nosotros, 500)");
+                IList<LibroEN> listaLibros = libCEN.ReadFilter (500);
+                foreach (LibroEN libro in listaLibros) {
+                        Console.WriteLine ("Libro: " + libro.Nombre + " Precio: " + libro.Precio);
+                }
+                Console.WriteLine (":::::::::::::::::::::::::::::::::::::::");
+                Console.WriteLine ();
+                Console.WriteLine (":::::Bestsellers de un vendedor:::::");
+                Console.WriteLine (" Un filtro de libros por el dinero total que han dado a un usuario concreto (usu1)");
+                usuEN = usuCEN.ReadOID (idUSU1);
+                listaLibros = libCEN.FiltroBestSeller (usuEN.Mail);
+                foreach (LibroEN libro in listaLibros) {
+                        double precio = libro.Precio * (double)libro.Compras;
+                        Console.WriteLine ("Libro: " + libro.Nombre + " con " + libro.Compras + " unidades a un precio de " + libro.Precio + " // Total ingresos: " + precio);
+                }
+                Console.WriteLine (":::::::::::::::::::::::::::::::::::::::");
+
                 /*PROTECTED REGION END*/
         }
         catch (Exception ex)

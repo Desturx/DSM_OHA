@@ -40,5 +40,7 @@ System.Collections.Generic.IList<UsuarioEN> ReadAll (int first, int size);
 void AnyadirClub (int p_Usuario_OID, System.Collections.Generic.IList<int> p_clubs_OIDs);
 
 void AnyadirLibro (int p_Usuario_OID, System.Collections.Generic.IList<int> p_libros_OIDs);
+
+System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> ReadFilter ();
 }
 }

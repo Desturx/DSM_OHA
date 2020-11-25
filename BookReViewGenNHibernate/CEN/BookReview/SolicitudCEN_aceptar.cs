@@ -9,6 +9,7 @@ using NHibernate.Exceptions;
 using BookReViewGenNHibernate.Exceptions;
 using BookReViewGenNHibernate.EN.BookReview;
 using BookReViewGenNHibernate.CAD.BookReview;
+using BookReViewGenNHibernate.Enumerated.BookReview;
 
 
 /*PROTECTED REGION ID(usingBookReViewGenNHibernate.CEN.BookReview_Solicitud_aceptar) ENABLED START*/
@@ -23,10 +24,10 @@ public void Aceptar (int p_oid)
 {
         /*PROTECTED REGION ID(BookReViewGenNHibernate.CEN.BookReview_Solicitud_aceptar) ENABLED START*/
 
-        // Write here your custom code...
+        SolicitudEN sol = _ISolicitudCAD.ReadOIDDefault (p_oid);
 
-        throw new NotImplementedException ("Method Aceptar() not yet implemented.");
-
+        sol.Estado = TiposolicitudEnum.aceptado;
+        _ISolicitudCAD.ModifyDefault (sol);
         /*PROTECTED REGION END*/
 }
 }

@@ -53,6 +53,5 @@
 		 </class>	
 		  
 		  <query name="Club_lecENReadAllHQL">from Club_lecEN</query>
-		  <query name="Club_lecENfiltraPagsLeidasHQL"><![CDATA[ select com FROM Comentario as com where com.Comentador.Club.paginaActual >= com.paginasLeidas]]></query>
 		</hibernate-mapping>
 	

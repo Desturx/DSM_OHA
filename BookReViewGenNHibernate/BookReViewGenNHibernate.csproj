@@ -132,11 +132,13 @@
 			
 			
 			
+			
 	<Compile Include="EN\BookReview\LibroEN.cs" />
 	<Compile Include="CEN\BookReview\LibroCEN.cs" />
 	<Compile Include="CAD\BookReview\ILibroCAD.cs" />
 	<Compile Include="CAD\BookReview\LibroCAD.cs" />
 	<Compile Include="CP\BookReview\LibroCP.cs" />
+			
 			
 			
 			
@@ -161,7 +163,6 @@
 	<Compile Include="CAD\BookReview\IClub_lecCAD.cs" />
 	<Compile Include="CAD\BookReview\Club_lecCAD.cs" />
 	<Compile Include="CP\BookReview\Club_lecCP.cs" />
-			
 			
 			
 			

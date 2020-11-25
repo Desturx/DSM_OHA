@@ -27,13 +27,16 @@ int PublicarLibro (LibroEN libro);
 void PuntuarLibro (LibroEN libro);
 
 
-System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> FiltrarListaLectura ();
-
-
 LibroEN ReadOID (int libroID
                  );
 
 
 System.Collections.Generic.IList<LibroEN> ReadAll (int first, int size);
+
+
+System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> ReadFilter (double ? p_precio);
+
+
+System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> FiltroBestSeller (string p_mail);
 }
 }

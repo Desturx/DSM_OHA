@@ -39,7 +39,7 @@ public IUsuarioCAD get_IUsuarioCAD ()
         return this._IUsuarioCAD;
 }
 
-public int New_ (String p_password, string p_mail, string p_fotoperfil, string p_nombre)
+public int New_ (String p_password, string p_mail, string p_fotoperfil, string p_nombre, double p_dineroventa)
 {
         UsuarioEN usuarioEN = null;
         int oid;
@@ -54,7 +54,7 @@ public int New_ (String p_password, string p_mail, string p_fotoperfil, string p
 
         usuarioEN.Nombre = p_nombre;
 
-        usuarioEN.Dineroventa = 0;
+        usuarioEN.Dineroventa = p_dineroventa;
 
         //Call to UsuarioCAD
 
@@ -138,12 +138,13 @@ private string Encode(string mail)
     return token;
 }
 
-public UsuarioEN ReadOID (int usuarioID)
+public UsuarioEN ReadOID (int usuarioID
+                          )
 {
-UsuarioEN usuarioEN = null;
+        UsuarioEN usuarioEN = null;
 
-usuarioEN = _IUsuarioCAD.ReadOID (usuarioID);
-return usuarioEN;
+        usuarioEN = _IUsuarioCAD.ReadOID (usuarioID);
+        return usuarioEN;
 }
 
 public System.Collections.Generic.IList<UsuarioEN> ReadAll (int first, int size)
@@ -164,6 +165,10 @@ public void AnyadirLibro (int p_Usuario_OID, System.Collections.Generic.IList<in
         //Call to UsuarioCAD
 
         _IUsuarioCAD.AnyadirLibro (p_Usuario_OID, p_libros_OIDs);
+}
+public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> ReadFilter ()
+{
+        return _IUsuarioCAD.ReadFilter ();
 }
 }
 }

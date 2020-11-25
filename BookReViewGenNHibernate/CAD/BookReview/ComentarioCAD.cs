@@ -102,9 +102,6 @@ public void ModifyDefault (ComentarioEN comentario)
 
 
 
-                comentarioEN.AutorID = comentario.AutorID;
-
-
                 comentarioEN.PaginasLeidas = comentario.PaginasLeidas;
 
                 session.Update (comentarioEN);
@@ -180,9 +177,6 @@ public void Modify (ComentarioEN comentario)
 
 
                 comentarioEN.Contenido = comentario.Contenido;
-
-
-                comentarioEN.AutorID = comentario.AutorID;
 
 
                 comentarioEN.PaginasLeidas = comentario.PaginasLeidas;
@@ -294,35 +288,6 @@ public int PublicarComentario (ComentarioEN comentario)
         return comentario.Comentario;
 }
 
-public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.ComentarioEN> FiltrarAmigos ()
-{
-        System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.ComentarioEN> result;
-        try
-        {
-                SessionInitializeTransaction ();
-                //String sql = @"FROM ComentarioEN self where  select com FROM Comentario as com inner join com.Comentador.SolicitudesRecibidas as lista where lista.Solicitante.UsuarioID = com.autorID";
-                //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("ComentarioENfiltrarAmigosHQL");
-
-                result = query.List<BookReViewGenNHibernate.EN.BookReview.ComentarioEN>();
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is BookReViewGenNHibernate.Exceptions.ModelException)
-                        throw ex;
-                throw new BookReViewGenNHibernate.Exceptions.DataLayerException ("Error in ComentarioCAD.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-
-        return result;
-}
 //Sin e: ReadOID
 //Con e: ComentarioEN
 public ComentarioEN ReadOID (int comentario
@@ -364,6 +329,37 @@ public System.Collections.Generic.IList<ComentarioEN> ReadAll (int first, int si
                                  SetFirstResult (first).SetMaxResults (size).List<ComentarioEN>();
                 else
                         result = session.CreateCriteria (typeof(ComentarioEN)).List<ComentarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is BookReViewGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new BookReViewGenNHibernate.Exceptions.DataLayerException ("Error in ComentarioCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.ComentarioEN> ReadFilter (int ? p_paginas)
+{
+        System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.ComentarioEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ComentarioEN self where select com FROM ComentarioEN as com where com.PaginasLeidas >= :p_paginas";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ComentarioENreadFilterHQL");
+                query.SetParameter ("p_paginas", p_paginas);
+
+                result = query.List<BookReViewGenNHibernate.EN.BookReview.ComentarioEN>();
                 SessionCommit ();
         }
 

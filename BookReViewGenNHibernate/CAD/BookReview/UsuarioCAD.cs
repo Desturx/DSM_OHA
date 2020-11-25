@@ -385,5 +385,35 @@ public void AnyadirLibro (int p_Usuario_OID, System.Collections.Generic.IList<in
                 SessionClose ();
         }
 }
+
+public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> ReadFilter ()
+{
+        System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM UsuarioEN self where select usu FROM UsuarioEN as usu";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENreadFilterHQL");
+
+                result = query.List<BookReViewGenNHibernate.EN.BookReview.UsuarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is BookReViewGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new BookReViewGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

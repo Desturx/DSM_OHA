@@ -24,9 +24,6 @@ void Destroy (int clubID
               );
 
 
-System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.Club_lecEN> FiltraPagsLeidas ();
-
-
 Club_lecEN ReadOID (int clubID
                     );
 

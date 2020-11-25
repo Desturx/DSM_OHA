@@ -30,13 +30,13 @@ void BorrarComentario (int comentario
 
 int PublicarComentario (ComentarioEN comentario);
 
-System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.ComentarioEN> FiltrarAmigos ();
-
-
 ComentarioEN ReadOID (int comentario
                       );
 
 
 System.Collections.Generic.IList<ComentarioEN> ReadAll (int first, int size);
+
+
+System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.ComentarioEN> ReadFilter (int ? p_paginas);
 }
 }

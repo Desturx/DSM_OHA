@@ -39,7 +39,7 @@ public IComentarioCAD get_IComentarioCAD ()
         return this._IComentarioCAD;
 }
 
-public void Modify (int p_Comentario_OID, string p_titulo, Nullable<DateTime> p_fecha, string p_contenido, int p_autorID, int p_paginasLeidas)
+public void Modify (int p_Comentario_OID, string p_titulo, Nullable<DateTime> p_fecha, string p_contenido, int p_paginasLeidas)
 {
         ComentarioEN comentarioEN = null;
 
@@ -49,7 +49,6 @@ public void Modify (int p_Comentario_OID, string p_titulo, Nullable<DateTime> p_
         comentarioEN.Titulo = p_titulo;
         comentarioEN.Fecha = p_fecha;
         comentarioEN.Contenido = p_contenido;
-        comentarioEN.AutorID = p_autorID;
         comentarioEN.PaginasLeidas = p_paginasLeidas;
         //Call to ComentarioCAD
 
@@ -105,10 +104,6 @@ public int PublicarComentario (string p_titulo, Nullable<DateTime> p_fecha, stri
         return oid;
 }
 
-public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.ComentarioEN> FiltrarAmigos ()
-{
-        return _IComentarioCAD.FiltrarAmigos ();
-}
 public ComentarioEN ReadOID (int comentario
                              )
 {
@@ -124,6 +119,10 @@ public System.Collections.Generic.IList<ComentarioEN> ReadAll (int first, int si
 
         list = _IComentarioCAD.ReadAll (first, size);
         return list;
+}
+public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.ComentarioEN> ReadFilter (int ? p_paginas)
+{
+        return _IComentarioCAD.ReadFilter (p_paginas);
 }
 }
 }

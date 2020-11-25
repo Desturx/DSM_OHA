@@ -68,7 +68,7 @@ public void BorrarLibro (int libroID
         _ILibroCAD.BorrarLibro (libroID);
 }
 
-public int PublicarLibro (string p_autor, string p_nombre, string p_genero, Nullable<DateTime> p_fechapubli, string p_idioma, string p_portada, double p_puntuacion, string p_enlacedecompra, int p_paginas, double p_precio, int p_creador)
+public int PublicarLibro (string p_autor, string p_nombre, string p_genero, Nullable<DateTime> p_fechapubli, string p_idioma, string p_portada, double p_puntuacion, string p_enlacedecompra, int p_paginas, double p_precio, int p_creador, int p_compras)
 {
         LibroEN libroEN = null;
         int oid;
@@ -95,17 +95,15 @@ public int PublicarLibro (string p_autor, string p_nombre, string p_genero, Null
 
         libroEN.Precio = p_precio;
 
-        libroEN.Compras = 0;
 
-
-
-            if (p_creador != -1) {
+        if (p_creador != -1) {
                 // El argumento p_creador -> Property creador es oid = false
                 // Lista de oids libroID
                 libroEN.Creador = new BookReViewGenNHibernate.EN.BookReview.UsuarioEN ();
                 libroEN.Creador.UsuarioID = p_creador;
         }
 
+        libroEN.Compras = p_compras;
 
         //Call to LibroCAD
 
@@ -136,10 +134,6 @@ public void PuntuarLibro (int p_Libro_OID, string p_autor, string p_nombre, stri
         _ILibroCAD.PuntuarLibro (libroEN);
 }
 
-public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> FiltrarListaLectura ()
-{
-        return _ILibroCAD.FiltrarListaLectura ();
-}
 public LibroEN ReadOID (int libroID
                         )
 {
@@ -155,6 +149,14 @@ public System.Collections.Generic.IList<LibroEN> ReadAll (int first, int size)
 
         list = _ILibroCAD.ReadAll (first, size);
         return list;
+}
+public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> ReadFilter (double ? p_precio)
+{
+        return _ILibroCAD.ReadFilter (p_precio);
+}
+public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> FiltroBestSeller (string p_mail)
+{
+        return _ILibroCAD.FiltroBestSeller (p_mail);
 }
 }
 }

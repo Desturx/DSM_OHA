@@ -48,13 +48,6 @@ private BookReViewGenNHibernate.EN.BookReview.UsuarioEN comentador;
 
 
 /**
- *	Atributo autorID
- */
-private int autorID;
-
-
-
-/**
  *	Atributo paginasLeidas
  */
 private int paginasLeidas;
@@ -100,12 +93,6 @@ public virtual BookReViewGenNHibernate.EN.BookReview.UsuarioEN Comentador {
 
 
 
-public virtual int AutorID {
-        get { return autorID; } set { autorID = value;  }
-}
-
-
-
 public virtual int PaginasLeidas {
         get { return paginasLeidas; } set { paginasLeidas = value;  }
 }
@@ -120,20 +107,20 @@ public ComentarioEN()
 
 
 
-public ComentarioEN(int comentario, string titulo, Nullable<DateTime> fecha, string contenido, BookReViewGenNHibernate.EN.BookReview.LibroEN lectura, BookReViewGenNHibernate.EN.BookReview.UsuarioEN comentador, int autorID, int paginasLeidas
+public ComentarioEN(int comentario, string titulo, Nullable<DateTime> fecha, string contenido, BookReViewGenNHibernate.EN.BookReview.LibroEN lectura, BookReViewGenNHibernate.EN.BookReview.UsuarioEN comentador, int paginasLeidas
                     )
 {
-        this.init (Comentario, titulo, fecha, contenido, lectura, comentador, autorID, paginasLeidas);
+        this.init (Comentario, titulo, fecha, contenido, lectura, comentador, paginasLeidas);
 }
 
 
 public ComentarioEN(ComentarioEN comentario)
 {
-        this.init (Comentario, comentario.Titulo, comentario.Fecha, comentario.Contenido, comentario.Lectura, comentario.Comentador, comentario.AutorID, comentario.PaginasLeidas);
+        this.init (Comentario, comentario.Titulo, comentario.Fecha, comentario.Contenido, comentario.Lectura, comentario.Comentador, comentario.PaginasLeidas);
 }
 
 private void init (int comentario
-                   , string titulo, Nullable<DateTime> fecha, string contenido, BookReViewGenNHibernate.EN.BookReview.LibroEN lectura, BookReViewGenNHibernate.EN.BookReview.UsuarioEN comentador, int autorID, int paginasLeidas)
+                   , string titulo, Nullable<DateTime> fecha, string contenido, BookReViewGenNHibernate.EN.BookReview.LibroEN lectura, BookReViewGenNHibernate.EN.BookReview.UsuarioEN comentador, int paginasLeidas)
 {
         this.Comentario = comentario;
 
@@ -147,8 +134,6 @@ private void init (int comentario
         this.Lectura = lectura;
 
         this.Comentador = comentador;
-
-        this.AutorID = autorID;
 
         this.PaginasLeidas = paginasLeidas;
 }

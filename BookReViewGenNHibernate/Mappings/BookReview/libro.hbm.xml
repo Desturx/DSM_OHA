@@ -153,6 +153,7 @@
 		 </class>	
 		  
 		  <query name="LibroENReadAllHQL">from LibroEN</query>
-		  <query name="LibroENfiltrarListaLecturaHQL"><![CDATA[ select lib FROM LibroEN as lib inner join lib.Usuario as us where us.Club.LibroActual = lib.Nombre]]></query>
+		  <query name="LibroENreadFilterHQL"><![CDATA[select lib FROM LibroEN as lib where lib.Precio<= :p_precio order by lib.Precio desc]]></query>
+		  <query name="LibroENfiltroBestSellerHQL"><![CDATA[select lib FROM LibroEN as lib WHERE lib.Creador.Mail = :p_mail order by (lib.Precio*lib.Compras) desc]]></query>
 		</hibernate-mapping>
 	

@@ -210,35 +210,6 @@ public void Destroy (int clubID
         }
 }
 
-public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.Club_lecEN> FiltraPagsLeidas ()
-{
-        System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.Club_lecEN> result;
-        try
-        {
-                SessionInitializeTransaction ();
-                //String sql = @"FROM Club_lecEN self where  select com FROM Comentario as com where com.Comentador.Club.paginaActual >= com.paginasLeidas";
-                //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("Club_lecENfiltraPagsLeidasHQL");
-
-                result = query.List<BookReViewGenNHibernate.EN.BookReview.Club_lecEN>();
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is BookReViewGenNHibernate.Exceptions.ModelException)
-                        throw ex;
-                throw new BookReViewGenNHibernate.Exceptions.DataLayerException ("Error in Club_lecCAD.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-
-        return result;
-}
 //Sin e: ReadOID
 //Con e: Club_lecEN
 public Club_lecEN ReadOID (int clubID

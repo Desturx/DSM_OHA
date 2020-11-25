@@ -21,9 +21,6 @@
 					<property name="Contenido" type="string"> 
 						<column name="contenido"  not-null="true"/>
 					</property>
-					<property name="AutorID" type="integer"> 
-						<column name="autorID"  unique="true" not-null="true"/>
-					</property>
 					<property name="PaginasLeidas" type="integer"> 
 						<column name="paginasLeidas"  not-null="true"/>
 					</property>
@@ -45,8 +42,6 @@
 						</many-to-one>
 											 					
 			
-			
-					
 					
 					
 					
@@ -58,6 +53,6 @@
 		 </class>	
 		  
 		  <query name="ComentarioENReadAllHQL">from ComentarioEN</query>
-		  <query name="ComentarioENfiltrarAmigosHQL"><![CDATA[ select com FROM Comentario as com inner join com.Comentador.SolicitudesRecibidas as lista where lista.Solicitante.UsuarioID = com.autorID]]></query>
+		  <query name="ComentarioENreadFilterHQL"><![CDATA[select com FROM ComentarioEN as com where com.PaginasLeidas >= :p_paginas]]></query>
 		</hibernate-mapping>
 	

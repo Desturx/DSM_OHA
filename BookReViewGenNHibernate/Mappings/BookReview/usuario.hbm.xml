@@ -152,5 +152,6 @@
 		 </class>	
 		  
 		  <query name="UsuarioENReadAllHQL">from UsuarioEN</query>
+		  <query name="UsuarioENreadFilterHQL"><![CDATA[select usu FROM UsuarioEN as usu]]></query>
 		</hibernate-mapping>
 	
