@@ -5,33 +5,36 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using NHibernate;
+//using EjemploDSMGenNHibernate.Exceptions;
+//using EjemploDSMGenNHibernate.CAD.EjemploDSM;
 using BookReViewGenNHibernate.Exceptions;
-using BookReViewGenNHibernate.CAD.EjemploDSM;
+using BookReViewGenNHibernate.CAD.BookReview;
 
-
+namespace WebBookReViewDSM.Controllers
+{
 public class BasicController: Controller
 {
-    protected ISession session;
+protected ISession session;
 
-    protected BasicController()
-    {
-    }
+protected BasicController()
+{
+}
 
-    protected void SessionInitialize ()
-    {
+protected void SessionInitialize ()
+{
         if (session == null) {
                 session = NHibernateHelper.OpenSession ();
         }
-    }
+}
 
 
-    protected void SessionClose ()
-    {
+protected void SessionClose ()
+{
         if (session != null && session.IsOpen) {
                 session.Close ();
                 session.Dispose ();
                 session = null;
         }
-    }
 }
-
+}
+}
