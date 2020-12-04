@@ -12,6 +12,6 @@ namespace WebBookReViewDSM.Models
         public int id { get; set; }
 
         [Display(Prompt = "Tipo de lista", Description = "Estado actual de la lista", Name = "Tipo lista")]
-        public string Tipolista { get; set; }
+        public Enum Tipolista { get; set; }
     }
 }

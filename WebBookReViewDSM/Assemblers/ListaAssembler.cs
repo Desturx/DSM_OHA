@@ -12,8 +12,10 @@ namespace WebBookReViewDSM.Assemblers
         public ListaViewModel ConvertENToModelUI(ListaEN en)
         {
             ListaViewModel lista = new ListaViewModel();
-           // lista.id = en.id;
-            //lista.Tipolista = en.tipo;
+                    
+            lista.id = en.Id;
+            // fav 1, pendiente 2, acabado 3
+            lista.Tipolista = en.Tipo;
 
             return lista;
         }
