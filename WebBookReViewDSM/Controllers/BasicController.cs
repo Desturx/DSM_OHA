@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using NHibernate;
 using BookReViewGenNHibernate.Exceptions;
-using BookReViewGenNHibernate.CAD.EjemploDSM;
+using BookReViewGenNHibernate.CAD.BookReview;
 
 
 public class BasicController: Controller

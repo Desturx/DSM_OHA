@@ -1,44 +1,45 @@
-﻿using BookReViewGenNHibernate.CAD.BookReview;
-using BookReViewGenNHibernate.CEN.BookReview;
-using BookReViewGenNHibernate.EN.BookReview;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BookReViewGenNHibernate.CAD.BookReview;
+using BookReViewGenNHibernate.CEN.BookReview;
+using BookReViewGenNHibernate.EN.BookReview;
 using WebBookReViewDSM.Assemblers;
 using WebBookReViewDSM.Models;
+
 namespace WebBookReViewDSM.Controllers
 {
-    public class CompraController : BasicController
+    public class ListaController : BasicController
     {
-        // GET: Compra
+        // GET: Lista
         public ActionResult Index()
         {
-            SessionInitialize();
-            CompraCAD compCAD = new CompraCAD(session);
-            CompraCEN compCEN = new CompraCEN(compCAD);
+            SessionInitialize(); //no se navega por en EN pero se hace por si se mueve por ens
+            ListaCAD liCAD = new ListaCAD(session); //el session se crea dentro del initialize por herencia del basic
+            ListaCEN liCEN = new ListaCEN(liCAD);
 
-            IList<CompraEN> compEN = compCEN.ReadAll(0, -1);
-            IEnumerable<CompraViewModel> listViewModel = new CompraAssembler().ConvertListENToModel(compEN).ToList();
+            IList<ListaEN> listEN = liCEN.ReadAll(0, -1);
+            IEnumerable<ListaViewModel> listviewmodel = new ListaAssembler().ConvertListENToModel(listEN).ToList();
             SessionClose();
 
-            return View(listViewModel);
+            return View();
         }
 
-        // GET: Compra/Details/5
+        // GET: Lista/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Compra/Create
+        // GET: Lista/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Compra/Create
+        // POST: Lista/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -54,19 +55,20 @@ namespace WebBookReViewDSM.Controllers
             }
         }
 
-        // GET: Compra/Edit/5
+        // GET: Lista/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Compra/Edit/5
+        // POST: Lista/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
             {
                 // TODO: Add update logic here
+
                 return RedirectToAction("Index");
             }
             catch
@@ -75,13 +77,13 @@ namespace WebBookReViewDSM.Controllers
             }
         }
 
-        // GET: Compra/Delete/5
+        // GET: Lista/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Compra/Delete/5
+        // POST: Lista/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

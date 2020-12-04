@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using BookReViewGenNHibernate.En.BookReView;
-using WebBookReViewDSM.models;
+using BookReViewGenNHibernate.EN.BookReview;
+using WebBookReViewDSM.Models;
 
 namespace WebBookReViewDSM.Assemblers
 {
     public class ListaAssembler
     {
-        public ListaViewModel ConvertEnToModelUI(ListaEn en)
+        public ListaViewModel ConvertENToModelUI(ListaEN en)
         {
             ListaViewModel lista = new ListaViewModel();
-            lista.id = en.id;
-            compra.Tipolista = en.tipo;
+           // lista.id = en.id;
+            //lista.Tipolista = en.tipo;
 
             return lista;
         }
@@ -23,7 +23,7 @@ namespace WebBookReViewDSM.Assemblers
             IList<ListaViewModel> listas = new List<ListaViewModel>();
             foreach (ListaEN cp in ens)
             {
-                listas.Add(ConvertEnToModelUI(cp));
+                //listas.Add(ConvertEnToModelUI(cp));
             }
 
             return listas;
