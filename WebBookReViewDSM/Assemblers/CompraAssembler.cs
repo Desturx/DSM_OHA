@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using BookReViewGenNHibernate.EN.BookReview;
-using WebBookReViewDSM.Models;
+using BookReViewGenNHibernate.En.BookReView;
+using WebBookReViewDSM.models;
+
 
 namespace WebBookReViewDSM.Assemblers
 {
     public class CompraAssembler
     {
-        public CompraViewModel ConvertEnToModelUI(CompraEN en)
+        public CompraViewModel ConvertEnToModelUI(CompraEn en)
         {
             CompraViewModel compra = new CompraViewModel();
             compra.CompraID = en.CompraID;
-            compra.Fecha = (DateTime)en.Fechaped;
+            compra.Fecha = en.Fechaped;
             compra.Comercio = en.Comercio;
             compra.Tipo_pago = en.Tipo_pago;
 

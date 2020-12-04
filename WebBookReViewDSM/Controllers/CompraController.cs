@@ -1,13 +1,8 @@
-﻿using BookReViewGenNHibernate.CAD.BookReview;
-using BookReViewGenNHibernate.CEN.BookReview;
-using BookReViewGenNHibernate.EN.BookReview;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebBookReViewDSM.Assemblers;
-using WebBookReViewDSM.Models;
 
 namespace WebBookReViewDSM.Controllers
 {
