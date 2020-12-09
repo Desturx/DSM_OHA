@@ -21,13 +21,13 @@ namespace WebBookReViewDSM.Models
        
         [Display(Prompt = "mail", Description = "Este es el correo del usuario", Name = "mail")]
         [Required(ErrorMessage = "Debe introducir un correo válido")]
-        [StringLength(maximumLength: 20, ErrorMessage = "El correo debe tener más de 10 caracteres")]
+        [StringLength(maximumLength: 30, ErrorMessage = "El correo debe tener más de 10 caracteres")]
 
         public String mail { get; set; }
 
         [Display(Prompt = "contraseña", Description = "Esta es la contraseña del usuario", Name = "password")]
         [Required(ErrorMessage = "Debe introducir la contraseña")]
-        [StringLength(maximumLength: 15, ErrorMessage = "La contraseña no tiene caracteres o es demasiado larga")]
+        [StringLength(maximumLength: 20, ErrorMessage = "La contraseña no tiene caracteres o es demasiado larga")]
 
         public String password { get; set; }
 

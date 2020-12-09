@@ -15,7 +15,8 @@ namespace WebBookReViewDSM.Assemblers
             UsuarioViewModel usu = new UsuarioViewModel();
 
             usu.usuarioID = en.UsuarioID;
-            // usu.password = en.Password;
+            usu.password = en.Password;
+            usu.fotoperfil = en.Fotoperfil;
             usu.mail = en.Mail;
             usu.nombre = en.Nombre;
 
