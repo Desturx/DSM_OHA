@@ -17,7 +17,13 @@ namespace WebBookReViewDSM.Assemblers
             com.titulo = en.Titulo;
             com.contenido = en.Contenido;
             com.paginasLeidas = en.PaginasLeidas;
-
+            LibroEN lectura = en.Lectura;
+            com.lectura = lectura.LibroID;
+            com.lecturatitulo = lectura.Nombre;
+            UsuarioEN comentador = en.Comentador;
+            com.comentador = comentador.UsuarioID;
+            com.comentadorname = comentador.Nombre;
+            
             return com;
         }
 

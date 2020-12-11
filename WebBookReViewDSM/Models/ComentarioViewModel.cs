@@ -4,6 +4,8 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
 
+using BookReViewGenNHibernate.CEN.BookReview;
+
 namespace WebBookReViewDSM.Models
 {
     public class ComentarioViewModel
@@ -28,5 +30,13 @@ namespace WebBookReViewDSM.Models
         [Required(ErrorMessage = "Debe incluir un numero de pags para el libro")]
         [Range(minimum: 0, maximum: 10000, ErrorMessage = "paginas deben ser >0 ")]
         public int paginasLeidas { get; set; }
+        public int comentador { get; set; }
+        public int lectura { get; set; }
+        [Display(Prompt = "Comentador", Description = "Mas de lo mismo ", Name = "comentador")]
+        [Required(ErrorMessage = "Debe incluir un comentador")]
+        public string comentadorname { get; set; }
+        [Display(Prompt = "Lectura", Description = "Mas de lo mismo ", Name = "lectura")]
+        [Required(ErrorMessage = "Debe incluir un comentador")]
+        public string lecturatitulo { get; set; }
     }
 }

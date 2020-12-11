@@ -10,7 +10,7 @@ using WebBookReViewDSM.Assemblers;
 using WebBookReViewDSM.Models;
 namespace WebBookReViewDSM.Controllers
 {
-    public class ComentarioController :     BasicController
+    public class ComentarioController :  BasicController
     {
         // GET: Comentario
         public ActionResult Index()
@@ -29,7 +29,13 @@ namespace WebBookReViewDSM.Controllers
         // GET: Comentario/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            ComentarioViewModel art = null;
+            SessionInitialize();
+            ComentarioEN artEN = new ComentarioCAD(session).ReadOIDDefault(id);
+            art = new ComentarioAssembler().ConvertEnToModelUI(artEN);
+            SessionClose();
+            return View(art);
+            
         }
 
         // GET: Comentario/Create
@@ -40,10 +46,12 @@ namespace WebBookReViewDSM.Controllers
 
         // POST: Comentario/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ComentarioViewModel com)
         {
             try
             {
+                ComentarioCEN comCEN= new ComentarioCEN();
+                comCEN.PublicarComentario(com.titulo, com.fecha, com.contenido, com.lectura, com.comentador, com.paginasLeidas);
                 // TODO: Add insert logic here
 
                 return RedirectToAction("Index");
@@ -57,17 +65,28 @@ namespace WebBookReViewDSM.Controllers
         // GET: Comentario/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ComentarioViewModel com = null; // inicializamos el objeto a NULL
+
+
+            SessionInitialize();
+
+            ComentarioEN comEN = new ComentarioCAD(session).ReadOIDDefault(id);
+            com = new ComentarioAssembler().ConvertEnToModelUI(comEN);
+
+            SessionClose();
+
+            return View(com);
         }
 
         // POST: Comentario/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(ComentarioViewModel com)
         {
             try
             {
                 // TODO: Add update logic here
-
+                ComentarioCEN comCEN = new ComentarioCEN();
+                comCEN.PublicarComentario(com.titulo, com.fecha, com.contenido, com.lectura, com.comentador, com.paginasLeidas);
                 return RedirectToAction("Index");
             }
             catch
@@ -79,6 +98,17 @@ namespace WebBookReViewDSM.Controllers
         // GET: Comentario/Delete/5
         public ActionResult Delete(int id)
         {
+            int idCategoria = -1;
+            SessionInitialize();
+            ComentarioCAD comCAD = new ComentarioCAD(session);
+            ComentarioCEN cen = new ComentarioCEN(comCAD);
+            ComentarioEN comEN = cen.ReadOID(id);
+            ComentarioViewModel art = new ComentarioAssembler().ConvertEnToModelUI(comEN);
+            
+            SessionClose();
+
+            new ComentarioCEN().Destroy(id);
+
             return View();
         }
 

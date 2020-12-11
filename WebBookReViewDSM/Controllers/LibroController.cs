@@ -28,9 +28,15 @@ namespace WebBookReViewDSM.Controllers
         }
 
         // GET: Libro/Details/5
+
         public ActionResult Details(int id)
         {
-            return View();
+            LibroViewModel lib = null;
+            SessionInitialize();
+            LibroEN libEN = new LibroCAD(session).ReadOIDDefault(id);
+            lib = new LibroAssembler().ConvertENToModelUI(libEN);
+            SessionClose();
+            return View(lib);
         }
 
         // GET: Libro/Create
@@ -46,12 +52,9 @@ namespace WebBookReViewDSM.Controllers
             try
             {
                 LibroCEN libCEN = new LibroCEN();
-               // libCEN.PublicarLibro(lib.autor,lib.) <-- declarar todos en el viewmodel y en algun otro sitio
-               //cambiar entre todos los csHTML de LAYOUT
-               //Todas las entidades o solo esas 5?
-               //agregar plantilla de create
-                // TODO: Add insert logic here
+                libCEN.PublicarLibro(lib.autor, lib.nombre, lib.genero, lib.fechapubli,lib.portada, lib.idioma, lib.puntuacion, lib.elacecompra, lib.paginas, lib.precio, lib.creador, lib.compras);
 
+                
                 return RedirectToAction("Index");
             }
             catch
@@ -63,18 +66,28 @@ namespace WebBookReViewDSM.Controllers
         // GET: Libro/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            LibroViewModel lib = null; // inicializamos el objeto a NULL
+
+
+            SessionInitialize();
+
+            LibroEN libEN = new LibroCAD(session).ReadOIDDefault(id);
+            lib = new LibroAssembler().ConvertENToModelUI(libEN);
+
+            SessionClose();
+            return View(lib);
         }
 
         // POST: Libro/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(LibroViewModel lib)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                LibroCEN libCEN = new LibroCEN();
+                libCEN.PublicarLibro(lib.autor, lib.nombre, lib.genero, lib.fechapubli, lib.portada, lib.idioma, lib.puntuacion, lib.elacecompra, lib.paginas, lib.precio, lib.creador, lib.compras);
+                return RedirectToAction("PorLibro", new { id = lib.libroID });
             }
             catch
             {
@@ -85,7 +98,19 @@ namespace WebBookReViewDSM.Controllers
         // GET: Libro/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            int idCategoria = -1;
+            SessionInitialize();
+            LibroCAD artCAD = new LibroCAD(session);
+            LibroCEN cen = new LibroCEN(artCAD);
+            LibroEN libEN = cen.ReadOID(id);
+            LibroViewModel lib = new LibroAssembler().ConvertENToModelUI(libEN);
+            idCategoria = lib.libroID;
+            SessionClose();
+
+            new LibroCEN().BorrarLibro(id);
+
+
+            return RedirectToAction("Index");
         }
 
         // POST: Libro/Delete/5

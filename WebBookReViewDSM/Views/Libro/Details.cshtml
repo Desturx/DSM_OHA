@@ -1,0 +1,123 @@
+﻿@model WebBookReViewDSM.Models.LibroViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LibroViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.autor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.autor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.genero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.genero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechapubli)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechapubli)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idioma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idioma)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.portada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.portada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.puntuacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.puntuacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.elacecompra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.elacecompra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.paginas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.paginas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creanombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creanombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.compras)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.compras)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.libroID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

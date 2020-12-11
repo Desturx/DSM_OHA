@@ -15,8 +15,18 @@ namespace WebBookReViewDSM.Assemblers
             LibroViewModel lib = new LibroViewModel();
             lib.libroID = en.LibroID; //de aqui se va al viewmodel y pues saca las cosas que se le pidan con las instrucciones
             lib.autor = en.Autor;
+            lib.nombre = en.Nombre;
+            lib.genero = en.Genero;
+            lib.fechapubli = (DateTime)en.Fechapubli;
+            lib.idioma = en.Idioma;
+            lib.portada = en.Portada;
+            lib.puntuacion = en.Puntuacion;
+            lib.elacecompra = en.Enlacedecompra;
             lib.paginas = en.Paginas;
             lib.precio = en.Precio;
+            lib.compras = en.Compras;
+            lib.creador = en.Creador.UsuarioID;
+            lib.creanombre = en.Creador.Nombre;
 
             return lib;
         }

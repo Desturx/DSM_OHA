@@ -24,6 +24,18 @@
         <th>
             @Html.DisplayNameFor(model => model.paginasLeidas)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comentador)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lectura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comentadorname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lecturatitulo)
+        </th>
         <th></th>
     </tr>
 
@@ -42,9 +54,21 @@
             @Html.DisplayFor(modelItem => item.paginasLeidas)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.DisplayFor(modelItem => item.comentador)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lectura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comentadorname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lecturatitulo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.comentario }) |
+            @Html.ActionLink("Details", "Details", new { id = item.comentario }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.comentario })
         </td>
     </tr>
 }

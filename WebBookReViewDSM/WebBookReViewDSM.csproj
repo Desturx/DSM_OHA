@@ -399,13 +399,19 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Libro\Index.cshtml" />
     <Content Include="Views\Compra\Index.cshtml" />
     <Content Include="Views\Lista\Index.cshtml" />
     <Content Include="Views\Usuario\Create.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Comentario\Index.cshtml" />
+    <Content Include="Views\Comentario\Create.cshtml" />
+    <Content Include="Views\Libro\Index.cshtml" />
+    <Content Include="Views\Comentario\Edit.cshtml" />
+    <Content Include="Views\Libro\Create.cshtml" />
+    <Content Include="Views\Libro\Edit.cshtml" />
+    <Content Include="Views\Libro\Details.cshtml" />
+    <Content Include="Views\Comentario\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
