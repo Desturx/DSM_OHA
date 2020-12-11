@@ -1,45 +1,44 @@
-﻿using System;
+﻿using BookReViewGenNHibernate.CAD.BookReview;
+using BookReViewGenNHibernate.CEN.BookReview;
+using BookReViewGenNHibernate.EN.BookReview;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BookReViewGenNHibernate.CAD.BookReview;
-using BookReViewGenNHibernate.CEN.BookReview;
-using BookReViewGenNHibernate.EN.BookReview;
 using WebBookReViewDSM.Assemblers;
 using WebBookReViewDSM.Models;
-
 namespace WebBookReViewDSM.Controllers
 {
-    public class ListaController : BasicController
+    public class ComentarioController :     BasicController
     {
-        // GET: Lista
+        // GET: Comentario
         public ActionResult Index()
         {
-            SessionInitialize(); //no se navega por en EN pero se hace por si se mueve por ens
-            ListaCAD liCAD = new ListaCAD(session); //el session se crea dentro del initialize por herencia del basic
-            ListaCEN liCEN = new ListaCEN(liCAD);
+            SessionInitialize();
+            ComentarioCAD comCAD = new ComentarioCAD(session);
+            ComentarioCEN comCEN = new ComentarioCEN(comCAD);
 
-            IList<ListaEN> listEN = liCEN.ReadAll(0, -1);
-            IEnumerable<ListaViewModel> listviewmodel = new ListaAssembler().ConvertListENToModel(listEN).ToList();
+            IList<ComentarioEN> comEN = comCEN.ReadAll(0, -1);
+            IEnumerable<ComentarioViewModel> listViewModel = new ComentarioAssembler().ConvertListENToModel(comEN).ToList();
             SessionClose();
 
-            return View(listviewmodel);
+            return View(listViewModel);
         }
 
-        // GET: Lista/Details/5
+        // GET: Comentario/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Lista/Create
+        // GET: Comentario/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Lista/Create
+        // POST: Comentario/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -55,13 +54,13 @@ namespace WebBookReViewDSM.Controllers
             }
         }
 
-        // GET: Lista/Edit/5
+        // GET: Comentario/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Lista/Edit/5
+        // POST: Comentario/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -77,13 +76,13 @@ namespace WebBookReViewDSM.Controllers
             }
         }
 
-        // GET: Lista/Delete/5
+        // GET: Comentario/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Lista/Delete/5
+        // POST: Comentario/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

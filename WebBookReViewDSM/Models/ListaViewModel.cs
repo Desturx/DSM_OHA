@@ -11,7 +11,8 @@ namespace WebBookReViewDSM.Models
         [ScaffoldColumn(false)]
         public int id { get; set; }
 
-        [Display(Prompt = "Tipo de lista", Description = "Estado actual de la lista", Name = "Tipo lista")]
+        [Display(Prompt = "Tipo de lista", Description = "Estado actual de la lista", Name = "Tipolista")]
+        [Required(ErrorMessage = "tieene que tener un tipo la lista")]
         public Enum Tipolista { get; set; }
     }
 }
