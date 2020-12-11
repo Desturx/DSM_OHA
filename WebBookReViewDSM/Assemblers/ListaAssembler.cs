@@ -16,7 +16,9 @@ namespace WebBookReViewDSM.Assemblers
             lista.id = en.Id;
             // fav 1, pendiente 2, acabado 3
             lista.Tipolista = en.Tipo;
-
+            
+            lista.duenyoLista = en.DuenyoLista.UsuarioID;
+            lista.nombreduenyo = en.DuenyoLista.Nombre;
             return lista;
         }
 
@@ -25,7 +27,7 @@ namespace WebBookReViewDSM.Assemblers
             IList<ListaViewModel> listas = new List<ListaViewModel>();
             foreach (ListaEN cp in ens)
             {
-                //listas.Add(ConvertEnToModelUI(cp));
+                listas.Add(ConvertENToModelUI(cp));
             }
 
             return listas;

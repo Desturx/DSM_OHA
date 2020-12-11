@@ -8,7 +8,7 @@ using BookReViewGenNHibernate.CEN.BookReview;
 using BookReViewGenNHibernate.EN.BookReview;
 using WebBookReViewDSM.Assemblers;
 using WebBookReViewDSM.Models;
-
+using BookReViewGenNHibernate.Enumerated.BookReview;
 namespace WebBookReViewDSM.Controllers
 {
     public class ListaController : BasicController
@@ -41,12 +41,14 @@ namespace WebBookReViewDSM.Controllers
 
         // POST: Lista/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ListaViewModel lista)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                ListaCEN listaCEN = new ListaCEN();
+                //Enum.
+                listaCEN.New_(lista.Tipolista, lista.duenyoLista);
                 return RedirectToAction("Index");
             }
             catch

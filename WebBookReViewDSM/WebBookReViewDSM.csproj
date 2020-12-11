@@ -199,6 +199,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Assemblers\ComentarioAssembler.cs" />
+    <Compile Include="Assemblers\Club_lecAssembler.cs" />
     <Compile Include="Assemblers\CompraAssembler.cs" />
     <Compile Include="Assemblers\LibroAssembler.cs" />
     <Compile Include="Assemblers\ListaAssembler.cs" />
@@ -206,6 +207,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BasicController.cs" />
     <Compile Include="Controllers\ComentarioController.cs" />
+    <Compile Include="Controllers\Club_lecController.cs" />
     <Compile Include="Controllers\CompraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibroController.cs" />
@@ -217,6 +219,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ComentarioViewModel.cs" />
+    <Compile Include="Models\Club_lecViewModel.cs" />
     <Compile Include="Models\CompraViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LibroViewModel.cs" />
@@ -400,7 +403,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Compra\Index.cshtml" />
-    <Content Include="Views\Lista\Index.cshtml" />
     <Content Include="Views\Usuario\Create.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
@@ -412,6 +414,10 @@
     <Content Include="Views\Libro\Edit.cshtml" />
     <Content Include="Views\Libro\Details.cshtml" />
     <Content Include="Views\Comentario\Details.cshtml" />
+    <Content Include="Views\Club_lec\Index.cshtml" />
+    <Content Include="Views\Club_lec\Create.cshtml" />
+    <Content Include="Views\Club_lec\Edit.cshtml" />
+    <Content Include="Views\Lista\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
