@@ -82,7 +82,7 @@ namespace WebBookReViewDSM.Controllers
                 Club_lecCEN clubCEN = new Club_lecCEN();
                 clubCEN.Modify(clubView.clubID, clubView.mensualidad, clubView.paginaActual, clubView.estado);
 
-                return RedirectToAction("PorClub", new { id = clubView.clubID });
+                return RedirectToAction("Index", new { id = clubView.clubID });
             }
             catch
             {
@@ -105,7 +105,7 @@ namespace WebBookReViewDSM.Controllers
                 SessionClose();
 
                 new Club_lecCEN().Destroy(id);
-                return RedirectToAction("PorClub", new { id = idClub });
+                return RedirectToAction("Index", new { id = idClub });
             }
             catch
             {

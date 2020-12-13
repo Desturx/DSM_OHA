@@ -30,7 +30,12 @@ namespace WebBookReViewDSM.Controllers
         // GET: Lista/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            ListaViewModel lis = null;
+            SessionInitialize();
+            ListaEN lisEN = new ListaCAD(session).ReadOIDDefault(id);
+            lis = new ListaAssembler().ConvertENToModelUI(lisEN);
+            SessionClose();
+            return View(lis);
         }
 
         // GET: Lista/Create
@@ -60,18 +65,28 @@ namespace WebBookReViewDSM.Controllers
         // GET: Lista/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ListaViewModel lista = null; // inicializamos el objeto a NULL
+
+
+            SessionInitialize();
+
+            ListaEN listaEN = new ListaCAD(session).ReadOIDDefault(id);
+            lista = new ListaAssembler().ConvertENToModelUI(listaEN);
+
+            SessionClose();
+            return View(lista);
         }
 
         // POST: Lista/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(ListaViewModel listaView)
         {
             try
             {
-                // TODO: Add update logic here
+                ListaCEN listaCEN = new ListaCEN();
+                listaCEN.Modify(listaView.id, listaView.Tipolista);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = listaView.id });
             }
             catch
             {
@@ -82,7 +97,25 @@ namespace WebBookReViewDSM.Controllers
         // GET: Lista/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                int idLista = -1;
+                SessionInitialize();
+                ListaCAD listaCad = new ListaCAD(session);
+                ListaCEN cen = new ListaCEN(listaCad);
+                ListaEN listaEN = cen.ReadOID(id);
+                ListaViewModel listaView = new ListaAssembler().ConvertENToModelUI(listaEN);
+                idLista = listaView.id;
+                SessionClose();
+
+                new ListaCEN().Destroy(id);
+                return RedirectToAction("Index", new { id = idLista });
+            }
+            catch
+            {
+                return View();
+            }
+            
         }
 
         // POST: Lista/Delete/5

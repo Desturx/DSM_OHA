@@ -18,6 +18,15 @@
         <th>
             @Html.DisplayNameFor(model => model.paginaActual)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lectura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombrelibro)
+        </th>
         <th></th>
     </tr>
 
@@ -30,9 +39,18 @@
             @Html.DisplayFor(modelItem => item.paginaActual)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lectura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombrelibro)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.clubID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.clubID }) |
+            @Html.ActionLink("Delete", "Delete", new {  id= item.clubID })
         </td>
     </tr>
 }

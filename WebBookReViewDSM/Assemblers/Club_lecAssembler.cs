@@ -17,6 +17,8 @@ namespace WebBookReViewDSM.Assemblers
             club.mensualidad = (DateTime)en.Mensualidad;
             club.paginaActual = en.PaginaActual;
             club.estado = en.Estado;
+            club.lectura = en.Lectura.LibroID;
+            club.nombrelibro = en.Lectura.Nombre;
             return club;
         }
 

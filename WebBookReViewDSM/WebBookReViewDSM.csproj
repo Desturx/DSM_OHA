@@ -415,7 +415,6 @@
     <Content Include="Views\Libro\Edit.cshtml" />
     <Content Include="Views\Libro\Details.cshtml" />
     <Content Include="Views\Comentario\Details.cshtml" />
-    <Content Include="Views\Club_lec\Index.cshtml" />
     <Content Include="Views\Club_lec\Create.cshtml" />
     <Content Include="Views\Club_lec\Edit.cshtml" />
     <Content Include="Views\Lista\Index.cshtml" />
@@ -425,6 +424,9 @@
     <Content Include="Views\Compra\Details.cshtml" />
     <Content Include="Views\Compra\Edit.cshtml" />
     <Content Include="Views\Compra\Index.cshtml" />
+    <Content Include="Views\Club_lec\Index.cshtml" />
+    <Content Include="Views\Lista\Create.cshtml" />
+    <Content Include="Views\Lista\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
