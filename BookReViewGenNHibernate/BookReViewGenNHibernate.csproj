@@ -121,12 +121,14 @@
 			
 			
 			
+			<Compile Include="CEN\BookReview\UsuarioCEN_Login.cs" />
 			
 			<Compile Include="CEN\BookReview\UsuarioCEN_ValidarUsuario.cs" />
 			
 			<Compile Include="CEN\BookReview\UsuarioCEN_VerPerfil.cs" />
 			
 			<Compile Include="CEN\BookReview\UsuarioCEN_GestionPerfil.cs" />
+			
 			
 			
 			

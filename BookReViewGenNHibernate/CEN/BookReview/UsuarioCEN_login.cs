@@ -19,5 +19,21 @@ namespace BookReViewGenNHibernate.CEN.BookReview
 {
 public partial class UsuarioCEN
 {
+public string Login (string p_mail, string p_password)
+{
+        /*PROTECTED REGION ID(BookReViewGenNHibernate.CEN.BookReview_Usuario_login) ENABLED START*/
+        string result = null;
+        IList<UsuarioEN> listaEn = GetUsuarioByEmail(p_mail);
+        
+        if(listaEn.Count > 0)    
+        {
+            UsuarioEN en = listaEn[0];
+            if (en.Password.Equals (Utils.Util.GetEncondeMD5 (p_password)))
+                result = this.GetToken (en.UsuarioID);
+
+        }
+        return result;
+        /*PROTECTED REGION END*/
+}
 }
 }
