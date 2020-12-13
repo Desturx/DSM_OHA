@@ -19,7 +19,7 @@
             @Html.DisplayNameFor(model => model.autor)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.paginas)
+            @Html.DisplayNameFor(model => model.fechapubli)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.precio)
@@ -37,34 +37,34 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.autor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.paginas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.precio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.creador)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.creanombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.compras)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.libroID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.libroID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.libroID })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.autor)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fechapubli)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.precio)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.creador)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.creanombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.compras)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.libroID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.libroID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.libroID })
+    </td>
+</tr>
 }
 
 </table>

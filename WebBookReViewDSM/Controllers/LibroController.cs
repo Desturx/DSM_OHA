@@ -86,8 +86,8 @@ namespace WebBookReViewDSM.Controllers
             {
                 // TODO: Add update logic here
                 LibroCEN libCEN = new LibroCEN();
-                libCEN.PublicarLibro(lib.autor, lib.nombre, lib.genero, lib.fechapubli, lib.portada, lib.idioma, lib.puntuacion, lib.elacecompra, lib.paginas, lib.precio, lib.creador, lib.compras);
-                return RedirectToAction("PorLibro", new { id = lib.libroID });
+                libCEN.Modify(lib.libroID,lib.autor,lib.nombre,lib.genero,lib.fechapubli,lib.idioma,lib.portada,lib.puntuacion,lib.elacecompra,lib.paginas,lib.precio,lib.compras);
+                return RedirectToAction("Index");
             }
             catch
             {

@@ -23,6 +23,8 @@ namespace WebBookReViewDSM.Models
         public string autor { get; set; }
 
         public string genero { get; set; }
+
+        [DataType(DataType.Date, ErrorMessage = "seleccione una fecha")]
         public DateTime fechapubli { get; set; }
         public string idioma { get; set; }
          public string portada { get; set; }

@@ -23,6 +23,8 @@ namespace WebBookReViewDSM.Models
         [Required(ErrorMessage = "Debe incluir un titulo")] //obligatorio y error
         [StringLength(maximumLength: 400, ErrorMessage = "Mucho texto")]
         public string contenido { get; set; }
+
+        [DataType(DataType.Date, ErrorMessage = "seleccione una fecha")]
         public DateTime fecha { get; set; }
 
 

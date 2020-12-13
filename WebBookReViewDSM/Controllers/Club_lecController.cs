@@ -30,7 +30,12 @@ namespace WebBookReViewDSM.Controllers
         // GET: Club_lec/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Club_lecViewModel art = null;
+            SessionInitialize();
+            Club_lecEN artEN = new Club_lecCAD(session).ReadOIDDefault(id);
+            art = new Club_lecAssembler().ConvertEnToModelUI(artEN);
+            SessionClose();
+            return View(art);
         }
 
         // GET: Club_lec/Create
