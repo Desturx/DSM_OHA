@@ -1,0 +1,59 @@
+﻿@model WebBookReViewDSM.Models.UsuarioViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UsuarioViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fotoperfil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fotoperfil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dineroventa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dineroventa)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Details", "Details", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

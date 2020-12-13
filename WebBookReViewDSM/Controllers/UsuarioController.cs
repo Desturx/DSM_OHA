@@ -30,7 +30,14 @@ namespace WebBookReViewDSM.Controllers
         // GET: Usuario/Details/id
         public ActionResult Details(int id)
         {
-            return View();
+            UsuarioViewModel usu = null;
+
+            SessionInitialize();
+            UsuarioEN usuEN = new UsuarioCAD(session).ReadOIDDefault(id);
+            usu = new UsuarioAssembler().ConvertENToModelUI(usuEN);
+            SessionClose();
+
+            return View(usu);
         }
 
         // GET: Usuario/Create
@@ -82,7 +89,7 @@ namespace WebBookReViewDSM.Controllers
                 UsuarioCEN usuCEN = new UsuarioCEN();
                 usuCEN.Modify(usuView.usuarioID, usuView.password, usuView.mail, usuView.fotoperfil, usuView.nombre, usuView.dineroventa);
 
-                return RedirectToAction("PorUsuario", new { id = usuView.usuarioID });
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -93,7 +100,27 @@ namespace WebBookReViewDSM.Controllers
         // GET: Usuario/Delete/id
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                // TODO: Add delete logic here
+                int idUsuario = -1;
+
+                SessionInitialize();
+                UsuarioCAD usuCAD = new UsuarioCAD(session);
+                UsuarioCEN cen = new UsuarioCEN(usuCAD);
+                UsuarioEN usuEN = cen.ReadOID(id);
+                UsuarioViewModel art = new UsuarioAssembler().ConvertENToModelUI(usuEN);
+                idUsuario = art.usuarioID;
+                SessionClose();
+
+                new UsuarioCEN().Destroy(id);
+
+                return RedirectToAction("Index", new { id = idUsuario });
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // POST: Usuario/Delete/id
