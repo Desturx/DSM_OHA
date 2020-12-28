@@ -16,10 +16,10 @@ namespace WebBookReViewDSM.Models
         //[Display(Prompt = "Tipo de lista", Description = "Estado actual de la lista", Name = "Tipo lista")]
         //public string listaEstado { get; set; }
 
-        [Display(Prompt = "Dueño de la lista", Description = "Creador de la lista", Name = "Lista de libros")]
+        [Display(Prompt = "Dueño de la lista", Description = "Creador de la lista", Name = "Identificador lista")]
         public int duenyoLista { get; set; }
 
-        [Display(Prompt = "Nombre dueño de la lista", Description = "Creador de la lista", Name = "Lista de libros")]
+        [Display(Prompt = "Nombre dueño de la lista", Description = "Creador de la lista", Name = "Creador de la lista")]
         public string nombreduenyo { get; set; }
 
 

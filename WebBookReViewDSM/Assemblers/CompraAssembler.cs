@@ -13,9 +13,11 @@ namespace WebBookReViewDSM.Assemblers
         {
             CompraViewModel compra = new CompraViewModel();
             compra.CompraId = en.CompraID;
-            compra.Fecha = (DateTime)en.Fechaped;
-            compra.Comercio = en.Comercio;
-            compra.Tipo_pago = en.Tipo_pago;
+            compra.tipo_pago = en.Tipo_pago;
+            compra.infoTarjeta = en.Infotarjeta;
+            compra.fecha = (DateTime)en.Fechaped;
+            compra.terminal = en.Terminal;
+            compra.comercio = en.Comercio;
 
             return compra;
         }

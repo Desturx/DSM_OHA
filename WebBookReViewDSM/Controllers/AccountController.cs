@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using BookReViewGenNHibernate.CEN.BookReview;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -79,7 +80,17 @@ namespace WebBookReViewDSM.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    UsuarioCEN usu = new UsuarioCEN();
+                    string token = usu.Login(model.Email, model.Password);
+                    
+                    if(token != null) return RedirectToLocal(returnUrl);
+                    else
+                    {
+                        ModelState.AddModelError("", "Invalid login attempt.");
+                        return View(model);
+                    }
+
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -147,7 +158,7 @@ namespace WebBookReViewDSM.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegistroUsuarioViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -156,7 +167,9 @@ namespace WebBookReViewDSM.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
+                    UsuarioCEN usuCEN = new UsuarioCEN();
+                    usuCEN.New_(model.password, model.mail, model.fotoperfil, model.nombre, model.dineroventa);
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

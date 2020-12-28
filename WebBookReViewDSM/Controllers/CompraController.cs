@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebBookReViewDSM.Assemblers;
 using WebBookReViewDSM.Models;
+
 namespace WebBookReViewDSM.Controllers
 {
     public class CompraController : BasicController
@@ -29,7 +30,12 @@ namespace WebBookReViewDSM.Controllers
         // GET: Compra/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            CompraViewModel comp = null;
+            SessionInitialize();
+            CompraEN compEN = new CompraCAD(session).ReadOIDDefault(id);
+            comp = new CompraAssembler().ConvertEnToModelUI(compEN);
+            SessionClose();
+            return View(comp);
         }
 
         // GET: Compra/Create
@@ -57,17 +63,25 @@ namespace WebBookReViewDSM.Controllers
         // GET: Compra/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            CompraViewModel compra = null;
+
+            SessionInitialize();
+            CompraEN cpEN = new CompraCAD(session).ReadOIDDefault(id);
+            compra = new CompraAssembler().ConvertEnToModelUI(cpEN);
+            SessionClose();
+
+            return View(compra);
         }
 
         // POST: Compra/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(CompraViewModel compView)
         {
             try
             {
-                // TODO: Add update logic here
-                return RedirectToAction("Index");
+                CompraCEN compCEN = new CompraCEN();
+                compCEN.Modify(compView.CompraId, compView.tipo_pago, compView.infoTarjeta, compView.fecha, compView.terminal, compView.comercio);
+                return RedirectToAction("PorCompra", new { id = compView.CompraId});
             }
             catch
             {
@@ -78,7 +92,19 @@ namespace WebBookReViewDSM.Controllers
         // GET: Compra/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            int idCategoria = -1;
+            SessionInitialize();
+            CompraCAD compCAD = new CompraCAD(session);
+            CompraCEN cen = new CompraCEN(compCAD);
+            CompraEN compEN = cen.ReadOID(id);
+            CompraViewModel comp = new CompraAssembler().ConvertEnToModelUI(compEN);
+            idCategoria = comp.CompraId;
+            SessionClose();
+
+            new CompraCEN().Destroy(id);
+
+            return RedirectToAction("Index");
+
         }
 
         // POST: Compra/Delete/5

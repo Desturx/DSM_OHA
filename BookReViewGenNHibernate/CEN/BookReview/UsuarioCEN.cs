@@ -108,15 +108,13 @@ public int Registro (String p_password, string p_mail, string p_fotoperfil, stri
         return oid;
 }
 
-public string Login (int p_mail, string p_password)
+public UsuarioEN ReadOID (int usuarioID
+                          )
 {
-        string result = null;
-        UsuarioEN en = _IUsuarioCAD.ReadOIDDefault (p_mail);
+        UsuarioEN usuarioEN = null;
 
-        if (en != null && en.Password.Equals (Utils.Util.GetEncondeMD5 (p_password)))
-                result = this.GetToken (en.UsuarioID);
-
-        return result;
+        usuarioEN = _IUsuarioCAD.ReadOID (usuarioID);
+        return usuarioEN;
 }
 
 private string GetToken(int usuarioID)
@@ -136,15 +134,6 @@ private string Encode(string mail)
     string token = Jose.JWT.Encode(payload, Utils.Util.getKey(), Jose.JwsAlgorithm.HS256);
 
     return token;
-}
-
-public UsuarioEN ReadOID (int usuarioID
-                          )
-{
-        UsuarioEN usuarioEN = null;
-
-        usuarioEN = _IUsuarioCAD.ReadOID (usuarioID);
-        return usuarioEN;
 }
 
 public System.Collections.Generic.IList<UsuarioEN> ReadAll (int first, int size)
@@ -169,6 +158,10 @@ public void AnyadirLibro (int p_Usuario_OID, System.Collections.Generic.IList<in
 public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> ReadFilter ()
 {
         return _IUsuarioCAD.ReadFilter ();
+}
+public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> GetUsuarioByEmail (string p_mail)
+{
+        return _IUsuarioCAD.GetUsuarioByEmail (p_mail);
 }
 }
 }

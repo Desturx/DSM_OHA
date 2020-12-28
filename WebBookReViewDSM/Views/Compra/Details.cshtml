@@ -1,0 +1,59 @@
+﻿@model WebBookReViewDSM.Models.CompraViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CompraViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo_pago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo_pago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.infoTarjeta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.infoTarjeta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.terminal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.terminal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comercio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comercio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.CompraId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

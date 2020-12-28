@@ -30,7 +30,12 @@ namespace WebBookReViewDSM.Controllers
         // GET: Club_lec/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Club_lecViewModel art = null;
+            SessionInitialize();
+            Club_lecEN artEN = new Club_lecCAD(session).ReadOIDDefault(id);
+            art = new Club_lecAssembler().ConvertEnToModelUI(artEN);
+            SessionClose();
+            return View(art);
         }
 
         // GET: Club_lec/Create
@@ -82,7 +87,7 @@ namespace WebBookReViewDSM.Controllers
                 Club_lecCEN clubCEN = new Club_lecCEN();
                 clubCEN.Modify(clubView.clubID, clubView.mensualidad, clubView.paginaActual, clubView.estado);
 
-                return RedirectToAction("PorClub", new { id = clubView.clubID });
+                return RedirectToAction("Index", new { id = clubView.clubID });
             }
             catch
             {
@@ -105,7 +110,7 @@ namespace WebBookReViewDSM.Controllers
                 SessionClose();
 
                 new Club_lecCEN().Destroy(id);
-                return RedirectToAction("PorClub", new { id = idClub });
+                return RedirectToAction("Index", new { id = idClub });
             }
             catch
             {

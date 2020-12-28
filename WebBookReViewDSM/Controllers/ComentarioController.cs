@@ -86,7 +86,7 @@ namespace WebBookReViewDSM.Controllers
             {
                 // TODO: Add update logic here
                 ComentarioCEN comCEN = new ComentarioCEN();
-                comCEN.PublicarComentario(com.titulo, com.fecha, com.contenido, com.lectura, com.comentador, com.paginasLeidas);
+                comCEN.Modify(com.comentario, com.titulo, com.fecha, com.contenido, com.paginasLeidas);
                 return RedirectToAction("Index");
             }
             catch
@@ -109,7 +109,7 @@ namespace WebBookReViewDSM.Controllers
 
             new ComentarioCEN().Destroy(id);
 
-            return View();
+            return RedirectToAction("Index");
         }
 
         // POST: Comentario/Delete/5
