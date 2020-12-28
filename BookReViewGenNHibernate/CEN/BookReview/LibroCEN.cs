@@ -39,14 +39,13 @@ public ILibroCAD get_ILibroCAD ()
         return this._ILibroCAD;
 }
 
-public void Modify (int p_Libro_OID, string p_autor, string p_nombre, string p_genero, Nullable<DateTime> p_fechapubli, string p_idioma, string p_portada, double p_puntuacion, string p_enlacedecompra, int p_paginas, double p_precio, int p_compras)
+public void Modify (int p_Libro_OID, string p_nombre, string p_genero, Nullable<DateTime> p_fechapubli, string p_idioma, string p_portada, double p_puntuacion, string p_enlacedecompra, int p_paginas, double p_precio, int p_compras)
 {
         LibroEN libroEN = null;
 
         //Initialized LibroEN
         libroEN = new LibroEN ();
         libroEN.LibroID = p_Libro_OID;
-        libroEN.Autor = p_autor;
         libroEN.Nombre = p_nombre;
         libroEN.Genero = p_genero;
         libroEN.Fechapubli = p_fechapubli;
@@ -68,15 +67,13 @@ public void BorrarLibro (int libroID
         _ILibroCAD.BorrarLibro (libroID);
 }
 
-public int PublicarLibro (string p_autor, string p_nombre, string p_genero, Nullable<DateTime> p_fechapubli, string p_idioma, string p_portada, double p_puntuacion, string p_enlacedecompra, int p_paginas, double p_precio, int p_creador, int p_compras)
+public int PublicarLibro (string p_nombre, string p_genero, Nullable<DateTime> p_fechapubli, string p_idioma, string p_portada, double p_puntuacion, string p_enlacedecompra, int p_paginas, double p_precio, int p_creador, int p_compras, int p_aut_lib)
 {
         LibroEN libroEN = null;
         int oid;
 
         //Initialized LibroEN
         libroEN = new LibroEN ();
-        libroEN.Autor = p_autor;
-
         libroEN.Nombre = p_nombre;
 
         libroEN.Genero = p_genero;
@@ -105,20 +102,27 @@ public int PublicarLibro (string p_autor, string p_nombre, string p_genero, Null
 
         libroEN.Compras = p_compras;
 
+
+        if (p_aut_lib != -1) {
+                // El argumento p_aut_lib -> Property aut_lib es oid = false
+                // Lista de oids libroID
+                libroEN.Aut_lib = new BookReViewGenNHibernate.EN.BookReview.AutorEN ();
+                libroEN.Aut_lib.AutorID = p_aut_lib;
+        }
+
         //Call to LibroCAD
 
         oid = _ILibroCAD.PublicarLibro (libroEN);
         return oid;
 }
 
-public void PuntuarLibro (int p_Libro_OID, string p_autor, string p_nombre, string p_genero, Nullable<DateTime> p_fechapubli, string p_idioma, string p_portada, double p_puntuacion, string p_enlacedecompra, int p_paginas, double p_precio, int p_compras)
+public void PuntuarLibro (int p_Libro_OID, string p_nombre, string p_genero, Nullable<DateTime> p_fechapubli, string p_idioma, string p_portada, double p_puntuacion, string p_enlacedecompra, int p_paginas, double p_precio, int p_compras)
 {
         LibroEN libroEN = null;
 
         //Initialized LibroEN
         libroEN = new LibroEN ();
         libroEN.LibroID = p_Libro_OID;
-        libroEN.Autor = p_autor;
         libroEN.Nombre = p_nombre;
         libroEN.Genero = p_genero;
         libroEN.Fechapubli = p_fechapubli;

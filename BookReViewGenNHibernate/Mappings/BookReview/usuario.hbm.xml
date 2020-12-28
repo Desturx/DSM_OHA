@@ -153,6 +153,5 @@
 		  
 		  <query name="UsuarioENReadAllHQL">from UsuarioEN</query>
 		  <query name="UsuarioENreadFilterHQL"><![CDATA[select usu FROM UsuarioEN as usu]]></query>
-		  <query name="UsuarioENgetUsuarioByEmailHQL"><![CDATA[FROM UsuarioEN as usu where usu.Mail = :p_mail]]></query>
 		</hibernate-mapping>
 	

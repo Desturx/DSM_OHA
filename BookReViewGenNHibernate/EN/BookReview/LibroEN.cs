@@ -13,13 +13,6 @@ private int libroID;
 
 
 /**
- *	Atributo autor
- */
-private string autor;
-
-
-
-/**
  *	Atributo nombre
  */
 private string nombre;
@@ -138,17 +131,18 @@ private int compras;
 
 
 
+/**
+ *	Atributo aut_lib
+ */
+private BookReViewGenNHibernate.EN.BookReview.AutorEN aut_lib;
+
+
+
 
 
 
 public virtual int LibroID {
         get { return libroID; } set { libroID = value;  }
-}
-
-
-
-public virtual string Autor {
-        get { return autor; } set { autor = value;  }
 }
 
 
@@ -255,6 +249,12 @@ public virtual int Compras {
 
 
 
+public virtual BookReViewGenNHibernate.EN.BookReview.AutorEN Aut_lib {
+        get { return aut_lib; } set { aut_lib = value;  }
+}
+
+
+
 
 
 public LibroEN()
@@ -269,25 +269,23 @@ public LibroEN()
 
 
 
-public LibroEN(int libroID, string autor, string nombre, string genero, Nullable<DateTime> fechapubli, string idioma, string portada, double puntuacion, string enlacedecompra, int paginas, double precio, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.CompraEN> solicitudesRealizada, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.ListaEN> listainfo, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.ComentarioEN> opinion, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> usuarios, BookReViewGenNHibernate.EN.BookReview.UsuarioEN creador, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.Club_lecEN> clublibro, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.PuntuacionEN> puntuacion_0, int compras
+public LibroEN(int libroID, string nombre, string genero, Nullable<DateTime> fechapubli, string idioma, string portada, double puntuacion, string enlacedecompra, int paginas, double precio, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.CompraEN> solicitudesRealizada, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.ListaEN> listainfo, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.ComentarioEN> opinion, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> usuarios, BookReViewGenNHibernate.EN.BookReview.UsuarioEN creador, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.Club_lecEN> clublibro, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.PuntuacionEN> puntuacion_0, int compras, BookReViewGenNHibernate.EN.BookReview.AutorEN aut_lib
                )
 {
-        this.init (LibroID, autor, nombre, genero, fechapubli, idioma, portada, puntuacion, enlacedecompra, paginas, precio, solicitudesRealizada, listainfo, opinion, usuarios, creador, clublibro, puntuacion_0, compras);
+        this.init (LibroID, nombre, genero, fechapubli, idioma, portada, puntuacion, enlacedecompra, paginas, precio, solicitudesRealizada, listainfo, opinion, usuarios, creador, clublibro, puntuacion_0, compras, aut_lib);
 }
 
 
 public LibroEN(LibroEN libro)
 {
-        this.init (LibroID, libro.Autor, libro.Nombre, libro.Genero, libro.Fechapubli, libro.Idioma, libro.Portada, libro.Puntuacion, libro.Enlacedecompra, libro.Paginas, libro.Precio, libro.SolicitudesRealizada, libro.Listainfo, libro.Opinion, libro.Usuarios, libro.Creador, libro.Clublibro, libro.Puntuacion_0, libro.Compras);
+        this.init (LibroID, libro.Nombre, libro.Genero, libro.Fechapubli, libro.Idioma, libro.Portada, libro.Puntuacion, libro.Enlacedecompra, libro.Paginas, libro.Precio, libro.SolicitudesRealizada, libro.Listainfo, libro.Opinion, libro.Usuarios, libro.Creador, libro.Clublibro, libro.Puntuacion_0, libro.Compras, libro.Aut_lib);
 }
 
 private void init (int libroID
-                   , string autor, string nombre, string genero, Nullable<DateTime> fechapubli, string idioma, string portada, double puntuacion, string enlacedecompra, int paginas, double precio, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.CompraEN> solicitudesRealizada, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.ListaEN> listainfo, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.ComentarioEN> opinion, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> usuarios, BookReViewGenNHibernate.EN.BookReview.UsuarioEN creador, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.Club_lecEN> clublibro, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.PuntuacionEN> puntuacion_0, int compras)
+                   , string nombre, string genero, Nullable<DateTime> fechapubli, string idioma, string portada, double puntuacion, string enlacedecompra, int paginas, double precio, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.CompraEN> solicitudesRealizada, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.ListaEN> listainfo, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.ComentarioEN> opinion, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> usuarios, BookReViewGenNHibernate.EN.BookReview.UsuarioEN creador, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.Club_lecEN> clublibro, System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.PuntuacionEN> puntuacion_0, int compras, BookReViewGenNHibernate.EN.BookReview.AutorEN aut_lib)
 {
         this.LibroID = libroID;
 
-
-        this.Autor = autor;
 
         this.Nombre = nombre;
 
@@ -322,6 +320,8 @@ private void init (int libroID
         this.Puntuacion_0 = puntuacion_0;
 
         this.Compras = compras;
+
+        this.Aut_lib = aut_lib;
 }
 
 public override bool Equals (object obj)

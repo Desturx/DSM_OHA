@@ -91,9 +91,6 @@ public void ModifyDefault (LibroEN libro)
                 SessionInitializeTransaction ();
                 LibroEN libroEN = (LibroEN)session.Load (typeof(LibroEN), libro.LibroID);
 
-                libroEN.Autor = libro.Autor;
-
-
                 libroEN.Nombre = libro.Nombre;
 
 
@@ -130,6 +127,7 @@ public void ModifyDefault (LibroEN libro)
 
                 libroEN.Compras = libro.Compras;
 
+
                 session.Update (libroEN);
                 SessionCommit ();
         }
@@ -155,9 +153,6 @@ public void Modify (LibroEN libro)
         {
                 SessionInitializeTransaction ();
                 LibroEN libroEN = (LibroEN)session.Load (typeof(LibroEN), libro.LibroID);
-
-                libroEN.Autor = libro.Autor;
-
 
                 libroEN.Nombre = libro.Nombre;
 
@@ -242,6 +237,13 @@ public int PublicarLibro (LibroEN libro)
                         libro.Creador.LibrosCreado
                         .Add (libro);
                 }
+                if (libro.Aut_lib != null) {
+                        // Argumento OID y no colección.
+                        libro.Aut_lib = (BookReViewGenNHibernate.EN.BookReview.AutorEN)session.Load (typeof(BookReViewGenNHibernate.EN.BookReview.AutorEN), libro.Aut_lib.AutorID);
+
+                        libro.Aut_lib.Obra
+                        .Add (libro);
+                }
 
                 session.Save (libro);
                 SessionCommit ();
@@ -269,9 +271,6 @@ public void PuntuarLibro (LibroEN libro)
         {
                 SessionInitializeTransaction ();
                 LibroEN libroEN = (LibroEN)session.Load (typeof(LibroEN), libro.LibroID);
-
-                libroEN.Autor = libro.Autor;
-
 
                 libroEN.Nombre = libro.Nombre;
 

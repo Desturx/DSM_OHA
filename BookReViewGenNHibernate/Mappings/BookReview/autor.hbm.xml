@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="BookReViewGenNHibernate"
+		                   namespace="BookReViewGenNHibernate.EN.BookReview">
+		    
+		    
+			
+				<class name="AutorEN" table="Autor"> 
+				  	
+						<id name="AutorID" column="autorID" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre"  not-null="true"/>
+					</property>
+					<property name="NumLibros" type="integer"> 
+						<column name="numLibros"  not-null="true"/>
+					</property>
+					<property name="Nacimiento" type="timestamp"> 
+						<column name="nacimiento"  not-null="true"/>
+					</property>
+					<property name="Fotoautor" type="string"> 
+						<column name="fotoautor"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="Obra" >
+							<key>
+							
+								
+								<column name="FK_autorID_idAut_lib"/>
+					      	</key>
+							<one-to-many class="BookReViewGenNHibernate.EN.BookReview.LibroEN"/>
+					    </bag>
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="AutorENReadAllHQL">from AutorEN</query>
+		</hibernate-mapping>
+	
