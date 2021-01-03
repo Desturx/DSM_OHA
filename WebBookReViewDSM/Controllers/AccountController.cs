@@ -81,9 +81,9 @@ namespace WebBookReViewDSM.Controllers
             {
                 case SignInStatus.Success:
                     UsuarioCEN usu = new UsuarioCEN();
-                    string token = usu.Login(model.Email, model.Password);
-                    
-                    if(token != null) return RedirectToLocal(returnUrl);
+                   // string token = usu.Login(model.Email, model.Password);
+                    string token = null;
+                    if (token != null) return RedirectToLocal(returnUrl);
                     else
                     {
                         ModelState.AddModelError("", "Invalid login attempt.");

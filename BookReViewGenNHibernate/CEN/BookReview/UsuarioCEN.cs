@@ -108,7 +108,7 @@ public int Registro (String p_password, string p_mail, string p_fotoperfil, stri
         return oid;
 }
 
-public string Login (string p_mail, string p_password)
+public string Login (int p_mail, string p_password)
 {
         string result = null;
         UsuarioEN en = _IUsuarioCAD.ReadOIDDefault (p_mail);

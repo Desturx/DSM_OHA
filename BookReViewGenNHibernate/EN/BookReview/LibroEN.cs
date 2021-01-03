@@ -11,7 +11,7 @@ public partial class LibroEN
 private int libroID;
 
 
-
+        private int autor;
 /**
  *	Atributo nombre
  */

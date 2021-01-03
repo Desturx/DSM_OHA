@@ -42,6 +42,25 @@ namespace WebBookReViewDSM.Controllers
         // GET: Libro/Create
         public ActionResult Create()
         {
+            IList<UsuarioEN> listaCreadores = new UsuarioCEN().ReadAll(0, -1);
+            IList<SelectListItem> creadoresItems = new List<SelectListItem>();
+
+            foreach (UsuarioEN usu in listaCreadores) {
+                creadoresItems.Add(new SelectListItem { Text = usu.Nombre, Value = usu.UsuarioID.ToString() });
+            }
+
+            ViewData["IdCreador"] = creadoresItems;
+
+
+            IList<AutorEN> listaAutores = new AutorCEN().ReadAll(0, -1);
+            IList<SelectListItem> autoresItems = new List<SelectListItem>();
+
+            foreach (AutorEN au in listaAutores)
+            {
+                creadoresItems.Add(new SelectListItem { Text = au.Nombre, Value = au.AutorID.ToString() });
+            }
+
+            ViewData["IdAutor"] = autoresItems;
             return View();
         }
 
@@ -52,7 +71,7 @@ namespace WebBookReViewDSM.Controllers
             try
             {
                 LibroCEN libCEN = new LibroCEN();
-                libCEN.PublicarLibro(lib.autor, lib.nombre, lib.genero, lib.fechapubli,lib.portada, lib.idioma, lib.puntuacion, lib.elacecompra, lib.paginas, lib.precio, lib.creador, lib.compras);
+                libCEN.PublicarLibro(lib.nombre, lib.genero, lib.fechapubli,lib.portada, lib.idioma, lib.puntuacion, lib.elacecompra, lib.paginas, lib.precio, lib.creador, lib.compras, lib.idautor);
 
                 
                 return RedirectToAction("Index");
@@ -86,7 +105,7 @@ namespace WebBookReViewDSM.Controllers
             {
                 // TODO: Add update logic here
                 LibroCEN libCEN = new LibroCEN();
-                libCEN.Modify(lib.libroID,lib.autor,lib.nombre,lib.genero,lib.fechapubli,lib.idioma,lib.portada,lib.puntuacion,lib.elacecompra,lib.paginas,lib.precio,lib.compras);
+                libCEN.Modify(lib.libroID,lib.nombre,lib.genero,lib.fechapubli,lib.idioma,lib.portada,lib.puntuacion,lib.elacecompra,lib.paginas,lib.precio,lib.compras);
                 return RedirectToAction("Index");
             }
             catch
