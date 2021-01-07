@@ -1,5 +1,5 @@
-﻿@model IEnumerable<BookReViewGenNHibernate.EN.BookReview.LibroEN>
-
+﻿@model IEnumerable<WebBookReViewDSM.Models.ComentarioViewModel>
+<!-- index, inicio sesion, IDS concretas, -->
 @{
     ViewBag.Title = "Home Page";
 }
@@ -12,19 +12,20 @@
 
 <h3>Articulos mas importantes </h3>
 <table>
-    @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Compras);
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre);
-        </td>
-        
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.comentadorname);
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comentador);
+            </td>
 
-    </tr>
-    
-    
+
+        </tr>
+
+
     }
 
 </table>

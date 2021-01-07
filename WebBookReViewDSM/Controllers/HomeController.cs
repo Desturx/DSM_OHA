@@ -25,3 +25,6 @@ namespace WebBookReViewDSM.Controllers
             SessionClose();
             return View(list);
         }
+
+    }
+}

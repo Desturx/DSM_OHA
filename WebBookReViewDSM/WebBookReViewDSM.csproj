@@ -430,6 +430,7 @@
     <Content Include="Views\Comentario\Create.cshtml" />
     <Content Include="Views\Compra\View.cshtml" />
     <Content Include="Views\Lista\Details.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
