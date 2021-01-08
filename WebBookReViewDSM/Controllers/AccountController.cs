@@ -158,12 +158,12 @@ namespace WebBookReViewDSM.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegistroUsuarioViewModel model)
+        public async Task<ActionResult> Register(UsuarioViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.mail, Email = model.mail };
+                var result = await UserManager.CreateAsync(user, model.password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

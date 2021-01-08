@@ -1,5 +1,5 @@
-﻿@model IEnumerable<WebBookReViewDSM.Models.ComentarioViewModel>
-<!-- index, inicio sesion, IDS concretas, -->
+﻿@model IEnumerable<WebBookReViewDSM.Models.LibroViewModel>
+<!-- index, inicio sesion, IDS concretas, subida de fotos,amigos -->
 @{
     ViewBag.Title = "Home Page";
 }
@@ -16,10 +16,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.comentadorname);
+                @Html.DisplayFor(modelItem => item.creador);
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.comentador);
+                @Html.DisplayFor(modelItem => item.autorname);
             </td>
 
 
