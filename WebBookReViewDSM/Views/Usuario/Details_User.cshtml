@@ -1,0 +1,70 @@
+﻿@model WebBookReViewDSM.Models.UsuarioViewModel
+
+@{
+    ViewBag.Title = "Perfil";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Datos - @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/one-page-wonder.css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/material-kit.css")
+</head>
+
+<body class="profile-page sidebar-collapse">
+
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark navbar-custom fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">@Html.ActionLink("Inicio", "Home", "Libro", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="main main-raised">
+        <div class="profile-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <div class="profile">
+                            <div class="avatar">
+                                <img src="@Html.DisplayFor(model => model.fotoperfil)" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                            </div>
+                            <div class="name">
+                                <h2>@Html.DisplayFor(model => model.nombre)</h2>
+
+                                <hr><br />
+                                <h3> Información personal</h3>
+                                <h6>Email: @Html.DisplayFor(model => model.mail)</h6>
+                                <h6>Saldo: @Html.DisplayFor(model => model.dineroventa)</h6>
+                                <h6>Contraseña: @Html.DisplayFor(model => model.password)</h6>
+
+                                @Html.ActionLink("Editar Perfil", "Edit", "Usuario", new { id = Model.usuarioID }, new { @class = "btn btn-warning" })
+
+                                <hr><br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

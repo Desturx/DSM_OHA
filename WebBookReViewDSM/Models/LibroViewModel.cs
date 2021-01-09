@@ -11,6 +11,16 @@ namespace WebBookReViewDSM.Models
         [ScaffoldColumn(false)]
         public int libroID { get; set; } //la CP
 
+        [ScaffoldColumn(false)]
+        [Display(Prompt = "Id creador", Description = "Mas de lo mismo ", Name = "nombre")]
+        public int idcreador;
+
+        [ScaffoldColumn(false)]
+        [Display(Prompt = "Id Autor", Description = "Mas de lo mismo ", Name = "nombre")]
+        public int idautor;
+
+
+
         [Display(Prompt = "Nombre libro", Description = "Mas de lo mismo ", Name = "nombre")] //display info que se muestra junto al campo de entrada
         [Required(ErrorMessage = "Debe incluir un nombre")] //obligatorio y error
         [StringLength(maximumLength: 50, ErrorMessage = "Mucho texto")]
@@ -20,7 +30,7 @@ namespace WebBookReViewDSM.Models
         [Display(Prompt = "Autor del libro", Description = "Mas de lo mismo ", Name = "autor")] //display info que se muestra junto al campo de entrada
         [Required(ErrorMessage = "Debe incluir un autor para el libro")] //obligatorio y error
         [StringLength(maximumLength: 200, ErrorMessage = "Mucho texto")]
-        public string autor { get; set; }
+        public string autorname { get; set; }
 
         public string genero { get; set; }
 

@@ -225,7 +225,6 @@
     <Compile Include="Models\LibroViewModel.cs" />
     <Compile Include="Models\ListaViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\RegistroUsuarioViewModel.cs" />
     <Compile Include="Models\UsuarioViewModel.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -430,10 +429,17 @@
     <Content Include="Views\Comentario\Create.cshtml" />
     <Content Include="Views\Compra\View.cshtml" />
     <Content Include="Views\Lista\Details.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
+    <Content Include="Views\Home\Home_usuario.cshtml" />
+    <Content Include="Views\Club_lec\Shared_Clubs.cshtml" />
+    <Content Include="Views\Home\Shared_Clubs.cshtml" />
+    <Content Include="Views\Usuario\Index_user.cshtml" />
+    <Content Include="Views\Usuario\Details_User.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
+    <Folder Include="imgs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

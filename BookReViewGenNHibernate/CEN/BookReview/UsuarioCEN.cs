@@ -85,29 +85,6 @@ public void Destroy (int usuarioID
         _IUsuarioCAD.Destroy (usuarioID);
 }
 
-public int Registro (String p_password, string p_mail, string p_fotoperfil, string p_nombre, double p_dineroventa)
-{
-        UsuarioEN usuarioEN = null;
-        int oid;
-
-        //Initialized UsuarioEN
-        usuarioEN = new UsuarioEN ();
-        usuarioEN.Password = Utils.Util.GetEncondeMD5 (p_password);
-
-        usuarioEN.Mail = p_mail;
-
-        usuarioEN.Fotoperfil = p_fotoperfil;
-
-        usuarioEN.Nombre = p_nombre;
-
-        usuarioEN.Dineroventa = p_dineroventa;
-
-        //Call to UsuarioCAD
-
-        oid = _IUsuarioCAD.Registro (usuarioEN);
-        return oid;
-}
-
 public UsuarioEN ReadOID (int usuarioID
                           )
 {
@@ -115,25 +92,6 @@ public UsuarioEN ReadOID (int usuarioID
 
         usuarioEN = _IUsuarioCAD.ReadOID (usuarioID);
         return usuarioEN;
-}
-
-private string GetToken(int usuarioID)
-{
-    UsuarioEN en = _IUsuarioCAD.ReadOIDDefault(usuarioID);
-    string token = Encode(en.Mail);
-
-    return token;
-}
-
-private string Encode(string mail)
-{
-     var payload = new Dictionary<string, object>()
-    {
-        { "mail", mail }
-    };
-    string token = Jose.JWT.Encode(payload, Utils.Util.getKey(), Jose.JwsAlgorithm.HS256);
-
-    return token;
 }
 
 public System.Collections.Generic.IList<UsuarioEN> ReadAll (int first, int size)
@@ -162,6 +120,81 @@ public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.Us
 public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> GetUsuarioByEmail (string p_mail)
 {
         return _IUsuarioCAD.GetUsuarioByEmail (p_mail);
+}
+
+
+
+private string Encode (int usuarioID, string mail)
+{
+        var payload = new Dictionary<string, object>(){
+                { "usuarioID", usuarioID }, { "mail", mail }
+        };
+        string token = Jose.JWT.Encode (payload, Utils.Util.getKey (), Jose.JwsAlgorithm.HS256);
+
+        return token;
+}
+
+public string GetToken (int usuarioID)
+{
+        UsuarioEN en = _IUsuarioCAD.ReadOIDDefault (usuarioID);
+        string token = Encode (en.UsuarioID, en.Mail);
+
+        return token;
+}
+public int CheckToken (string token)
+{
+        int result = -1;
+
+        try
+        {
+                string decodedToken = Utils.Util.Decode (token);
+
+
+
+                int id = (int)ObtenerUSUARIOID (decodedToken);
+
+                UsuarioEN en = _IUsuarioCAD.ReadOIDDefault (id);
+
+                if (en != null && ((long)en.UsuarioID).Equals (ObtenerUSUARIOID (decodedToken))
+                    && ((string)en.Mail).Equals (ObtenerMAIL (decodedToken))) {
+                        result = id;
+                }
+                else throw new ModelException ("El token es incorrecto");
+        } catch (Exception e)
+        {
+                throw new ModelException ("El token es incorrecto");
+        }
+
+        return result;
+}
+
+
+public long ObtenerUSUARIOID (string decodedToken)
+{
+        try
+        {
+                Dictionary<string, object> results = JsonConvert.DeserializeObject<Dictionary<string, object> >(decodedToken);
+                long usuarioid = (long)results ["usuarioID"];
+                return usuarioid;
+        }
+        catch
+        {
+                throw new Exception ("El token enviado no es correcto");
+        }
+}
+
+public string ObtenerMAIL (string decodedToken)
+{
+        try
+        {
+                Dictionary<string, object> results = JsonConvert.DeserializeObject<Dictionary<string, object> >(decodedToken);
+                string mail = (string)results ["mail"];
+                return mail;
+        }
+        catch
+        {
+                throw new Exception ("El token enviado no es correcto");
+        }
 }
 }
 }

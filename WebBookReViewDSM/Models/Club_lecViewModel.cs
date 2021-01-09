@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
+using BookReViewGenNHibernate.EN.BookReview;
 
 namespace WebBookReViewDSM.Models
 {
@@ -11,6 +12,9 @@ namespace WebBookReViewDSM.Models
 
         [ScaffoldColumn(false)]
         public int clubID { get; set; }
+
+        [ScaffoldColumn(false)]
+        public LibroEN lecturatotal;
 
         //[Display(Prompt = "Fecha de las reuniones", Description = "Reuniones del club de lectura", Name = "Fecha de las reuniones del club")]
         [DataType(DataType.Date, ErrorMessage = "seleccione una fecha")]

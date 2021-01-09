@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookReViewGenNHibernate.EN.BookReview;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,6 +12,12 @@ namespace WebBookReViewDSM.Models
         [ScaffoldColumn(false)]
 
         public int usuarioID { get; set; } // Clave primaria del usuario
+
+
+        [ScaffoldColumn(false)]
+
+        public IList<LibroEN> libros { get; set; } // Clave primaria del usuario
+
 
         [Display(Prompt = "Usuario", Description = "Este es un usuario", Name = "nombre")] // informacion del campo
         [Required(ErrorMessage = "Debe añadir un usuario")] // Es obligatorio y da un error

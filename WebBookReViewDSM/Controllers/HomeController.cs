@@ -3,33 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BookReViewGenNHibernate.CAD.BookReview;
 using BookReViewGenNHibernate.CEN.BookReview;
 using BookReViewGenNHibernate.EN.BookReview;
-
+using WebBookReViewDSM.Assemblers;
+using WebBookReViewDSM.Models;
 
 namespace WebBookReViewDSM.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BasicController
     {
         public ActionResult Index()
         {
-            LibroCEN libCEN = new LibroCEN();
-            IEnumerable<LibroEN> listaArt = libCEN.ReadAll(0, -1).ToList();
-            return View(listaArt);
+            SessionInitialize();
+            LibroCAD libroCAD = new LibroCAD(session);
+            LibroCEN libCEN = new LibroCEN(libroCAD);
+
+            List<LibroEN> listaArt = libCEN.ReadAll(0, -1).ToList();
+            LibroAssembler lass = new LibroAssembler();
+            IEnumerable<LibroViewModel> list = lass.ConvertListENToModel(listaArt).ToList();
+            SessionClose();
+            return View(list);
         }
 
-        public ActionResult About()
+        public ActionResult Shared_Clubs()
         {
-            ViewBag.Message = "Your application description page.";
+            SessionInitialize();
+            Club_lecCAD clubCAD = new Club_lecCAD(session);
+            Club_lecCEN clubCEN = new Club_lecCEN(clubCAD);
 
-            return View();
+            IList<Club_lecEN> clubEN = clubCEN.ReadAll(0, 1);
+            IEnumerable<Club_lecViewModel> listViewModel = new Club_lecAssembler().ConvertListENToModel(clubEN).ToList();
+            SessionClose();
+
+            return View(listViewModel);
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

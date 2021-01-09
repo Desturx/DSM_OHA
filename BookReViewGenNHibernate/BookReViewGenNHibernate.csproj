@@ -120,7 +120,6 @@
 			
 			
 			
-			
 			<Compile Include="CEN\BookReview\UsuarioCEN_Login.cs" />
 			
 			<Compile Include="CEN\BookReview\UsuarioCEN_ValidarUsuario.cs" />
@@ -231,6 +230,16 @@
 			
 			
 			
+	<Compile Include="EN\BookReview\AutorEN.cs" />
+	<Compile Include="CEN\BookReview\AutorCEN.cs" />
+	<Compile Include="CAD\BookReview\IAutorCAD.cs" />
+	<Compile Include="CAD\BookReview\AutorCAD.cs" />
+	<Compile Include="CP\BookReview\AutorCP.cs" />
+			
+			
+			
+			
+			
 	<Compile Include="Enumerated\BookReview\TiposolicitudEnum.cs" />
 	<Compile Include="Enumerated\BookReview\TipolistaEnum.cs" />
 	
@@ -257,6 +266,7 @@
 	<EmbeddedResource Include="Mappings\BookReview\compra.hbm.xml" />
 	<EmbeddedResource Include="Mappings\BookReview\lista.hbm.xml" />
 	<EmbeddedResource Include="Mappings\BookReview\puntuacion.hbm.xml" />
+	<EmbeddedResource Include="Mappings\BookReview\autor.hbm.xml" />
 	
 	
 

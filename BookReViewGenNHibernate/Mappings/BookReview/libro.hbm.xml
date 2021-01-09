@@ -12,9 +12,6 @@
 						</id>
 			
 					
-					<property name="Autor" type="string"> 
-						<column name="autor"  not-null="true"/>
-					</property>
 					<property name="Nombre" type="string"> 
 						<column name="nombre"  not-null="true"/>
 					</property>
@@ -45,7 +42,6 @@
 					<property name="Compras" type="integer"> 
 						<column name="compras"  not-null="true"/>
 					</property>
-			
 			
 			
 			
@@ -130,6 +126,12 @@
 					    </bag>
 					
 			
+			
+		  			
+						<many-to-one name="Aut_lib" class="BookReViewGenNHibernate.EN.BookReview.AutorEN" >	
+								<column name="FK_autorID_idAutor_0"/> 
+						</many-to-one>
+											 					
 					
 					
 					
