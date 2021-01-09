@@ -19,6 +19,7 @@ namespace WebBookReViewDSM.Assemblers
             club.estado = en.Estado;
             club.lectura = en.Lectura.LibroID;
             club.nombrelibro = en.Lectura.Nombre;
+            club.lecturatotal = en.Lectura;
             return club;
         }
 

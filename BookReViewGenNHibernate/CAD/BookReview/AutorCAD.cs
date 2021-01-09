@@ -148,31 +148,6 @@ public int New_ (AutorEN autor)
         return autor.AutorID;
 }
 
-public void Destroy (int autorID
-                     )
-{
-        try
-        {
-                SessionInitializeTransaction ();
-                AutorEN autorEN = (AutorEN)session.Load (typeof(AutorEN), autorID);
-                session.Delete (autorEN);
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is BookReViewGenNHibernate.Exceptions.ModelException)
-                        throw ex;
-                throw new BookReViewGenNHibernate.Exceptions.DataLayerException ("Error in AutorCAD.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-}
-
 public void Modify (AutorEN autor)
 {
         try
@@ -208,6 +183,31 @@ public void Modify (AutorEN autor)
                 SessionClose ();
         }
 }
+public void Destroy (int autorID
+                     )
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                AutorEN autorEN = (AutorEN)session.Load (typeof(AutorEN), autorID);
+                session.Delete (autorEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is BookReViewGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new BookReViewGenNHibernate.Exceptions.DataLayerException ("Error in AutorCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
 //Sin e: ReadOID
 //Con e: AutorEN
 public AutorEN ReadOID (int autorID

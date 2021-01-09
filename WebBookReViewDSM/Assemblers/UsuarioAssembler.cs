@@ -13,7 +13,7 @@ namespace WebBookReViewDSM.Assemblers
         public UsuarioViewModel ConvertENToModelUI(UsuarioEN en)
         {
             UsuarioViewModel usu = new UsuarioViewModel();
-
+            usu.libros = en.Libros;
             usu.usuarioID = en.UsuarioID;
             usu.password = en.Password;
             usu.fotoperfil = en.Fotoperfil;

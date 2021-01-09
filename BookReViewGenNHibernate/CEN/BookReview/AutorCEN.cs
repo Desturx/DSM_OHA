@@ -60,12 +60,6 @@ public int New_ (string p_nombre, int p_numLibros, Nullable<DateTime> p_nacimien
         return oid;
 }
 
-public void Destroy (int autorID
-                     )
-{
-        _IAutorCAD.Destroy (autorID);
-}
-
 public void Modify (int p_Autor_OID, string p_nombre, int p_numLibros, Nullable<DateTime> p_nacimiento, string p_fotoautor)
 {
         AutorEN autorEN = null;
@@ -80,6 +74,12 @@ public void Modify (int p_Autor_OID, string p_nombre, int p_numLibros, Nullable<
         //Call to AutorCAD
 
         _IAutorCAD.Modify (autorEN);
+}
+
+public void Destroy (int autorID
+                     )
+{
+        _IAutorCAD.Destroy (autorID);
 }
 
 public AutorEN ReadOID (int autorID

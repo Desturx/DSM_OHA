@@ -24,8 +24,6 @@ void Destroy (int usuarioID
               );
 
 
-int Registro (UsuarioEN usuario);
-
 
 
 

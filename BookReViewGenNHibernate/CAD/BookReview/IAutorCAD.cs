@@ -17,11 +17,11 @@ System.Collections.Generic.IList<AutorEN> ReadAllDefault (int first, int size);
 
 int New_ (AutorEN autor);
 
+void Modify (AutorEN autor);
+
+
 void Destroy (int autorID
               );
-
-
-void Modify (AutorEN autor);
 
 
 AutorEN ReadOID (int autorID

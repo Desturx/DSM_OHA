@@ -40,6 +40,22 @@ namespace WebBookReViewDSM.Controllers
             return View(usu);
         }
 
+        public ActionResult Details_User(string email)
+        {
+            SessionInitialize(); //no se navega por en EN pero se hace por si se mueve por ens
+            UsuarioCAD usuCAD = new UsuarioCAD(session); //el session se crea dentro del initialize por herencia del basi
+            IList<UsuarioEN> listaEn = new UsuarioCAD(session).GetUsuarioByEmail(email);
+            UsuarioViewModel usu = null;
+            if (listaEn.Count > 0)
+            {
+                usu = new UsuarioAssembler().ConvertENToModelUI(listaEn[0]);
+            }
+
+            SessionClose();
+
+            return View(usu); //cuando nos vamos a la vista
+        }
+
         // GET: Usuario/Create
         public ActionResult Create()
         {
@@ -73,7 +89,7 @@ namespace WebBookReViewDSM.Controllers
 
             UsuarioEN usuEN = new UsuarioCAD(session).ReadOIDDefault(id);
             usu = new UsuarioAssembler().ConvertENToModelUI(usuEN);
-            
+
             SessionClose();
 
 

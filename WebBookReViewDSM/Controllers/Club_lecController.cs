@@ -11,6 +11,7 @@ using WebBookReViewDSM.Models;
 
 namespace WebBookReViewDSM.Controllers
 {
+
     public class Club_lecController : BasicController
     {
         // GET: Club_lec
@@ -21,6 +22,19 @@ namespace WebBookReViewDSM.Controllers
             Club_lecCEN clubCEN = new Club_lecCEN(clubCAD);
 
             IList<Club_lecEN> clubEN = clubCEN.ReadAll(0, -1);
+            IEnumerable<Club_lecViewModel> listViewModel = new Club_lecAssembler().ConvertListENToModel(clubEN).ToList();
+            SessionClose();
+
+            return View(listViewModel);
+        }
+
+        public ActionResult Shared_Clubs()
+        {
+            SessionInitialize();
+            Club_lecCAD clubCAD = new Club_lecCAD(session);
+            Club_lecCEN clubCEN = new Club_lecCEN(clubCAD);
+
+            IList<Club_lecEN> clubEN = clubCEN.ReadAll(0,1);
             IEnumerable<Club_lecViewModel> listViewModel = new Club_lecAssembler().ConvertListENToModel(clubEN).ToList();
             SessionClose();
 

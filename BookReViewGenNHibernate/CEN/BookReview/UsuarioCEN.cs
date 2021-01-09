@@ -197,6 +197,9 @@ public int CheckToken (string token)
 
         return result;
 }
+public int CheckToken (string token)
+{
+        int result = -1;
 
 
 public long ObtenerUSUARIOID (string decodedToken)

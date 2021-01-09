@@ -18,7 +18,7 @@
 					<property name="NumLibros" type="integer"> 
 						<column name="numLibros"  not-null="true"/>
 					</property>
-					<property name="Nacimiento" type="timestamp"> 
+					<property name="Nacimiento" type="date"> 
 						<column name="nacimiento"  not-null="true"/>
 					</property>
 					<property name="Fotoautor" type="string"> 
@@ -30,17 +30,17 @@
 			
 			
 			
-			
 		  			
 						<bag name="Obra" >
 							<key>
 							
 								
-								<column name="FK_autorID_idAut_lib"/>
+								<column name="FK_autorID_idAutor_0"/>
 					      	</key>
 							<one-to-many class="BookReViewGenNHibernate.EN.BookReview.LibroEN"/>
 					    </bag>
 					
+			
 					
 					
 					

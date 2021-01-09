@@ -6,13 +6,6 @@ namespace BookReViewGenNHibernate.EN.BookReview
 public partial class AutorEN
 {
 /**
- *	Atributo autorID
- */
-private int autorID;
-
-
-
-/**
  *	Atributo nombre
  */
 private string nombre;
@@ -47,12 +40,13 @@ private System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.L
 
 
 
+/**
+ *	Atributo autorID
+ */
+private int autorID;
 
 
 
-public virtual int AutorID {
-        get { return autorID; } set { autorID = value;  }
-}
 
 
 
@@ -82,6 +76,12 @@ public virtual string Fotoautor {
 
 public virtual System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> Obra {
         get { return obra; } set { obra = value;  }
+}
+
+
+
+public virtual int AutorID {
+        get { return autorID; } set { autorID = value;  }
 }
 
 

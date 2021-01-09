@@ -120,7 +120,7 @@
 			
 			
 			
-			
+			<Compile Include="CEN\BookReview\UsuarioCEN_Login.cs" />
 			
 			<Compile Include="CEN\BookReview\UsuarioCEN_ValidarUsuario.cs" />
 			

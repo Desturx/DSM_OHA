@@ -222,32 +222,6 @@ public void Destroy (int usuarioID
         }
 }
 
-public int Registro (UsuarioEN usuario)
-{
-        try
-        {
-                SessionInitializeTransaction ();
-
-                session.Save (usuario);
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is BookReViewGenNHibernate.Exceptions.ModelException)
-                        throw ex;
-                throw new BookReViewGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioCAD.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-
-        return usuario.UsuarioID;
-}
-
 //Sin e: ReadOID
 //Con e: UsuarioEN
 public UsuarioEN ReadOID (int usuarioID

@@ -101,11 +101,11 @@ public static void InitializeData ()
                 int idAUT = auCEN.New_ ("Edgar Allan Poe", 0, new DateTime (2020, 01, 22), "foto.png");
                 //creamos LIBROS
                 LibroCEN libCEN = new LibroCEN ();
-                int idLIB = libCEN.PublicarLibro ("El cuervo", "Terror", new DateTime (2020, 01, 22), "ingles", "Portada", 4.4, "enlacecompra.com", 200, 50, idUSU1, 0, idAUT);
-                int idLIB2 = libCEN.PublicarLibro ("El cuervo 2", "Terror 2", new DateTime (2020, 01, 22), "ingles 2", "Portada 2", 4.4, "enlacecompra2.com", 200, 60, idUSU3, 0, idAUT);
-                int idLIB3 = libCEN.PublicarLibro ("El cuervo 3", "Terror 3", new DateTime (2020, 01, 22), "ingles 3", "Portada 3", 4.4, "enlacecompra3.com", 200, 300, idUSU1, 1, idAUT);
-                int idLIB4 = libCEN.PublicarLibro ("El cuervo 4", "Terror 4", new DateTime (2020, 01, 22), "ingles 4", "Portada 4", 4.4, "enlacecompra4.com", 200, 30, idUSU1, 1, idAUT);
-
+                int idLIB = libCEN.PublicarLibro ("El cuervo", "Terror", new DateTime (2020, 01, 22), "ingles", "Portada.jpg", 4.4, "enlacecompra.com", 200, 50, idUSU1, 0, idAUT);
+                int idLIB2 = libCEN.PublicarLibro ("El cuervo 2", "Terror 2", new DateTime (2020, 01, 22), "ingles 2", "Portada2.jpg", 4.4, "enlacecompra2.com", 200, 60, idUSU3, 0, idAUT);
+                int idLIB3 = libCEN.PublicarLibro ("El cuervo 3", "Terror 3", new DateTime (2020, 01, 22), "ingles 3", "Portada3.jpg", 4.4, "enlacecompra3.com", 200, 300, idUSU1, 1, idAUT);
+                int idLIB4 = libCEN.PublicarLibro ("El cuervo 4", "Terror 4", new DateTime (2020, 01, 22), "ingles 4", "Portada4.jpg", 4.4, "enlacecompra4.com", 200, 30, idUSU1, 1, idAUT);
+                int idLIB5 = libCEN.PublicarLibro ("El cuervo 5", "Terror 5", new DateTime (2020, 01, 22), "ingles 5", "Portada5.jpg", 4.4, "enlacecompra5.com", 500, 30, idUSU1, 1, idAUT);
                 //creamos PUNTUACION
                 PuntuacionCEN punCEN = new PuntuacionCEN ();
                 int idPUN = punCEN.New_ (4, idUSU1, idLIB);
