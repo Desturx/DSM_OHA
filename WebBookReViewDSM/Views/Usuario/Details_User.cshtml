@@ -1,10 +1,32 @@
 ﻿@model WebBookReViewDSM.Models.UsuarioViewModel
+@using Microsoft.AspNet.Identity
+@using BookReViewGenNHibernate.EN.BookReview;
+
 
 @{
     ViewBag.Title = "Perfil";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
+@{
+    int idUsu = 0;
+    string email = "";
+    double dineroventa = 0;
+    string foto = "";
+
+    if (Session["Usuario"] != null)
+    {
+
+
+        idUsu = ((UsuarioEN)Session["Usuario"]).UsuarioID;
+        email = ((UsuarioEN)Session["Usuario"]).Mail;
+        dineroventa = ((UsuarioEN)Session["Usuario"]).Dineroventa;
+        foto = ((UsuarioEN)Session["Usuario"]).Fotoperfil;
+        
+
+    }
+
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,37 +52,29 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">@Html.ActionLink("Inicio", "Home", "Libro", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Detalles", "Details_User", new { id = idUsu })</li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <div class="main main-raised">
-        <div class="profile-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 ml-auto mr-auto">
-                        <div class="profile">
-                            <div class="avatar">
-                                <img src="@Html.DisplayFor(model => model.fotoperfil)" alt="Circle Image" class="img-raised rounded-circle img-fluid">
-                            </div>
-                            <div class="name">
-                                <h2>@Html.DisplayFor(model => model.nombre)</h2>
+               
+    <div class="profile">
+        <div class="avatar">
+            <img src="@foto" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+        </div>
+        <div class="name">
+            <h2>@idUsu</h2>
 
-                                <hr><br />
-                                <h3> Información personal</h3>
-                                <h6>Email: @Html.DisplayFor(model => model.mail)</h6>
-                                <h6>Saldo: @Html.DisplayFor(model => model.dineroventa)</h6>
-                                <h6>Contraseña: @Html.DisplayFor(model => model.password)</h6>
+            <hr><br />
+            <h3> Información personal</h3>
+            <h6>Email: @email</h6>
+            <h6>Saldo: @dineroventa</h6>
+            <h6>Contraseña: @Html.DisplayFor(model => model.password)</h6>
 
-                                @Html.ActionLink("Editar Perfil", "Edit", "Usuario", new { id = Model.usuarioID }, new { @class = "btn btn-warning" })
 
-                                <hr><br />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            <hr><br />
         </div>
     </div>
 

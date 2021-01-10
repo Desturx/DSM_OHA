@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using BookReViewGenNHibernate.CEN.BookReview;
+using BookReViewGenNHibernate.EN.BookReview;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -83,6 +85,13 @@ namespace WebBookReViewDSM.Controllers
                     UsuarioCEN usu = new UsuarioCEN();
                     string token = usu.Login(model.Email, model.Password);
                     //string token = null;
+
+                    IList<UsuarioEN> listaEn = usu.GetUsuarioByEmail(model.Email);
+                    if (listaEn.Count > 0)
+                    {
+                        Session["Usuario"] = listaEn[0];
+                    }
+
                     if (token != null) return RedirectToLocal(returnUrl);
                     else
                     {
@@ -169,7 +178,10 @@ namespace WebBookReViewDSM.Controllers
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     UsuarioCEN usuCEN = new UsuarioCEN();
-                    usuCEN.New_(model.password, model.mail, model.fotoperfil, model.nombre, model.dineroventa);
+                    int id = usuCEN.New_(model.password, model.mail, model.fotoperfil, model.nombre, model.dineroventa);
+
+                    Session["Usuario"] = usuCEN.ReadOID(id);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
