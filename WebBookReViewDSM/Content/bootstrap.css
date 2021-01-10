@@ -28,12 +28,35 @@ summary {
   display: block;
 }
 
-.fotoindex:hover {
-height:350px;
-width:250px;
-border: 1em solid black;
-border-radius:1em;
+
+.row-propia {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1em;
+    padding: 2em;
+    /*background-image: url(https://i.pinimg.com/originals/0a/67/52/0a6752b7cd35fc441c1528ee5078384d.jpg);*/
+    background-color: #ede0b3;
+    overflow-x: auto;
+    overflow-y: hidden;
+    justify-content: space-around;
 }
+
+.col-propia {
+    display: flex;
+    flex-direction: column;
+    margin:10px;
+}
+
+    .col-propia:hover {
+        
+    }
+
+@media (min-width: 1200px) {
+    .row-propia {
+        overflow: auto;
+    }
+}
+
 
 audio,
 canvas,
