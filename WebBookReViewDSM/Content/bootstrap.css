@@ -31,7 +31,8 @@ summary {
 .fotoindex:hover {
 height:350px;
 width:250px;
-
+border: 1em solid black;
+border-radius:1em;
 }
 
 audio,
@@ -4245,7 +4246,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   position: relative;
   min-height: 50px;
   margin-bottom: 20px;
-  border: 1px solid transparent;
 }
 @media (min-width: 768px) {
   .navbar {
@@ -4667,7 +4667,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  background-color: #222;
+  background-color: white;
   border-color: #080808;
 }
 .navbar-inverse .navbar-brand {

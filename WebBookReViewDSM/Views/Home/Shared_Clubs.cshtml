@@ -8,11 +8,12 @@
 }
 <h1 style="font-size:4em">Circulo de lectura recomendado</h1>
 <div style="display: flex; flex-direction: row">
+    @{
+        int count = 0;
+    }
     @foreach (var item in Model)
     {
-
-        int count = 0;
-        if (count < 2)
+        if (count < 1)
         {
             <div class="row" style="display: flex; flex-direction: row">
                 <div class="row" style="display: flex; flex-direction: row">
@@ -41,12 +42,12 @@
             count++;
         }
     }
-        <div>
-            <blockquote class="pull-right" style="width:200px; font-size:1.5em">
-                “De los diversos instrumentos inventados por el hombre, el más asombroso es el libro;
-                todos los demás son extensiones de su cuerpo… Sólo el libro es una extensión de la imaginación y la memoria”.
-                <h2><b>Jorge Luis Borges.</b></h2>
-            </blockquote>
-        </div>
+    <div>
+        <blockquote class="pull-right" style="width:200px; font-size:1.5em">
+            “De los diversos instrumentos inventados por el hombre, el más asombroso es el libro;
+            todos los demás son extensiones de su cuerpo… Sólo el libro es una extensión de la imaginación y la memoria”.
+            <h2><b>Jorge Luis Borges.</b></h2>
+        </blockquote>
+    </div>
 
-    </div>  
+</div>  

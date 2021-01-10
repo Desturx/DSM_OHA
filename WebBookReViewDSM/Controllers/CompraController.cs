@@ -44,13 +44,16 @@ namespace WebBookReViewDSM.Controllers
             return View();
         }
 
+
         // POST: Compra/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CompraViewModel com)
         {
             try
             {
-                // TODO: Add insert logic here
+
+                CompraCEN comCEN = new CompraCEN();
+                comCEN.CreaCompra(com.compradorId, com.LibroId, com.tipo_pago, com.infoTarjeta, com.fecha, com.terminal, com.comercio);
 
                 return RedirectToAction("Index");
             }

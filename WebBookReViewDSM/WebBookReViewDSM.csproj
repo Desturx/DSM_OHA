@@ -198,6 +198,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Assemblers\AutorAssembler.cs" />
     <Compile Include="Assemblers\ComentarioAssembler.cs" />
     <Compile Include="Assemblers\Club_lecAssembler.cs" />
     <Compile Include="Assemblers\CompraAssembler.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="Assemblers\ListaAssembler.cs" />
     <Compile Include="Assemblers\UsuarioAssembler.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AutorController.cs" />
     <Compile Include="Controllers\BasicController.cs" />
     <Compile Include="Controllers\ComentarioController.cs" />
     <Compile Include="Controllers\Club_lecController.cs" />
@@ -218,6 +220,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AutorViewModel.cs" />
     <Compile Include="Models\ComentarioViewModel.cs" />
     <Compile Include="Models\Club_lecViewModel.cs" />
     <Compile Include="Models\CompraViewModel.cs" />
@@ -435,6 +438,14 @@
     <Content Include="Views\Home\Shared_Clubs.cshtml" />
     <Content Include="Views\Usuario\Index_user.cshtml" />
     <Content Include="Views\Usuario\Details_User.cshtml" />
+    <Content Include="Views\Libro\libro_user.cshtml" />
+    <Content Include="Views\Libro\Shared_comentarios.cshtml" />
+    <Content Include="Views\Libro\Shared_Clubs.cshtml" />
+    <Content Include="Views\Autor\Create.cshtml" />
+    <Content Include="Views\Autor\Details.cshtml" />
+    <Content Include="Views\Autor\Edit.cshtml" />
+    <Content Include="Views\Autor\Index.cshtml" />
+    <Content Include="Views\Compra\index_user.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

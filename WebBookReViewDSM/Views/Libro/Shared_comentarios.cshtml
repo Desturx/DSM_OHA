@@ -1,0 +1,43 @@
+﻿
+@model IEnumerable<WebBookReViewDSM.Models.ComentarioViewModel>
+
+
+@{
+    ViewBag.Title = "Home Page";
+
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<h1 style="font-size:4em; background-color:lightyellow">Comentarios</h1>
+<div style="display: flex; flex-direction: column; background-color:lightyellow">
+    @{ 
+        int count = 0;
+        string id = Request.QueryString["id"];
+        string path = HttpContext.Current.Request.Url.AbsolutePath;
+        string[] cosas = path.Split('/');
+    }
+    @foreach (var item in Model)
+    {
+        if (cosas[cosas.Length-1]==item.lectura.ToString())
+        {
+            <div class="row" style="display: flex; flex-direction: column">
+                <div>
+                    <h1> @Html.DisplayFor(modelItem => item.comentadorname)</h1>
+                    <p>@Html.DisplayFor(modelItem => item.paginasLeidas) </p>
+                    <p>Iconito o algo asi aqui</p>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+                <div>
+                    <p> @Html.DisplayFor(modelItem => item.contenido)</p>
+                </div>
+            </div>
+            count++;
+        }
+    }
+    @if (count == 0) {
+    <h1> No hay comentarios</h1>
+    }
+</div>

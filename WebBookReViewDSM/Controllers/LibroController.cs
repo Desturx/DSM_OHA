@@ -26,10 +26,45 @@ namespace WebBookReViewDSM.Controllers
 
             return View(listviewmodel); //cuando nos vamos a la vista
         }
+        public ActionResult Shared_comentarios()
+        {
+            SessionInitialize();
+            ComentarioCAD comCAD = new ComentarioCAD(session);
+            ComentarioCEN comCEN = new ComentarioCEN(comCAD);
+
+            IList<ComentarioEN> comEN = comCEN.ReadAll(0, -1);
+            IEnumerable<ComentarioViewModel> listViewModel = new ComentarioAssembler().ConvertListENToModel(comEN).ToList();
+            SessionClose();
+
+            return View(listViewModel);
+        }
+
+        public ActionResult Shared_Clubs()
+        {
+            SessionInitialize();
+            Club_lecCAD clubCAD = new Club_lecCAD(session);
+            Club_lecCEN clubCEN = new Club_lecCEN(clubCAD);
+
+            IList<Club_lecEN> clubEN = clubCEN.ReadAll(0, 1);
+            IEnumerable<Club_lecViewModel> listViewModel = new Club_lecAssembler().ConvertListENToModel(clubEN).ToList();
+            SessionClose();
+
+            return View(listViewModel);
+        }
 
         // GET: Libro/Details/5
 
         public ActionResult Details(int id)
+        {
+            LibroViewModel lib = null;
+            SessionInitialize();
+            LibroEN libEN = new LibroCAD(session).ReadOIDDefault(id);
+            lib = new LibroAssembler().ConvertENToModelUI(libEN);
+            SessionClose();
+            return View(lib);
+        }
+
+        public ActionResult libro_user(int id)
         {
             LibroViewModel lib = null;
             SessionInitialize();
