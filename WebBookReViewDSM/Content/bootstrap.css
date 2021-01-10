@@ -36,6 +36,7 @@ summary {
     padding: 2em;
     /*background-image: url(https://i.pinimg.com/originals/0a/67/52/0a6752b7cd35fc441c1528ee5078384d.jpg);*/
     background-color: #ede0b3;
+    overflow: scroll;
     overflow-x: auto;
     overflow-y: hidden;
     justify-content: space-around;
@@ -51,10 +52,13 @@ summary {
         
     }
 
-@media (min-width: 1200px) {
+@media (max-width: 1200px) {
     .row-propia {
-        overflow: auto;
+        color: #337ab7;
+        justify-content:flex-start;
     }
+
+    
 }
 
 
