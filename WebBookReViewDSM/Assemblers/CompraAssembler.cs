@@ -18,7 +18,10 @@ namespace WebBookReViewDSM.Assemblers
             compra.fecha = (DateTime)en.Fechaped;
             compra.terminal = en.Terminal;
             compra.comercio = en.Comercio;
-
+            compra.LibroId = en.Solicitante.LibroID;
+            compra.nomLib = en.Solicitante.Nombre;
+            compra.precLib = en.Solicitante.Precio;
+            compra.compradorId = en.Comprador.UsuarioID;
             return compra;
         }
 

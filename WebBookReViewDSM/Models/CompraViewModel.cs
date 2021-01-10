@@ -11,6 +11,18 @@ namespace WebBookReViewDSM.Models
         [ScaffoldColumn(false)]
         public int CompraId { get; set; }
 
+        [ScaffoldColumn(false)]
+        public int compradorId { get; set; }
+
+        [ScaffoldColumn(false)]
+        public int LibroId { get; set; }
+
+        [ScaffoldColumn(false)]
+        public string nomLib { get; set; }
+
+        [ScaffoldColumn(false)]
+        public double precLib { get; set; }
+
         [Display(Prompt  ="Tipo de pago", Description="Forma de pago de la compra", Name="Tipo pago")]
         [Required(ErrorMessage ="Debe indicar un tipo de pago")]
         [StringLength(maximumLength: 200, ErrorMessage ="El tipo de pago es muy largo")]
