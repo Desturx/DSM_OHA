@@ -1,23 +1,41 @@
 ﻿@using Microsoft.AspNet.Identity
+
+@using BookReViewGenNHibernate.EN.BookReview;
+@{ int idUsu = 0;
+
+    if (Session["Usuario"] != null)
+    {
+        idUsu = ((UsuarioEN)Session["Usuario"]).UsuarioID;
+
+    } }
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            <img width="75" height="75" src="~/imgs/prueba.jpg" />
-        </li>
-        <li>
-            @Html.ActionLink("" + User.Identity.GetUserName() , "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li style="display:flex;flex-direction:row;">
-            <p>Notificaciones aqui</p>
-            <p> Aqui un +</p>
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <img width="75" height="75" src="~/imgs/prueba.jpg" />
+            </li>
+            <li>
+                <div class="container" style="display:flex; flex-direction:row">
+                    <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo">@User.Identity.GetUserName() </button>
+                    <div id="demo" class="collapse">
+                        @Html.ActionLink("Editar Perfil", "Edit", "Usuario", new { id = idUsu }, new { @class = "btn btn-warning" })
+                        <br />
+                        @Html.ActionLink("About", "About", "Home", new { @class = "btn btn-info" })
+                        <br />
+                        @Html.ActionLink("Cerrar sesión", "Lockout", "Shared", new { @class = "btn btn-danger" })
+                    </div>
+                </div>
+            </li>
+            <li style="display:flex;flex-direction:row;">
+                <p>Notificaciones aqui</p>
+                <p> Aqui un +</p>
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
     }
 }
 else
