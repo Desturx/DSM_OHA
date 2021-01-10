@@ -116,28 +116,6 @@ public int PublicarLibro (string p_nombre, string p_genero, Nullable<DateTime> p
         return oid;
 }
 
-public void PuntuarLibro (int p_Libro_OID, string p_nombre, string p_genero, Nullable<DateTime> p_fechapubli, string p_idioma, string p_portada, double p_puntuacion, string p_enlacedecompra, int p_paginas, double p_precio, int p_compras)
-{
-        LibroEN libroEN = null;
-
-        //Initialized LibroEN
-        libroEN = new LibroEN ();
-        libroEN.LibroID = p_Libro_OID;
-        libroEN.Nombre = p_nombre;
-        libroEN.Genero = p_genero;
-        libroEN.Fechapubli = p_fechapubli;
-        libroEN.Idioma = p_idioma;
-        libroEN.Portada = p_portada;
-        libroEN.Puntuacion = p_puntuacion;
-        libroEN.Enlacedecompra = p_enlacedecompra;
-        libroEN.Paginas = p_paginas;
-        libroEN.Precio = p_precio;
-        libroEN.Compras = p_compras;
-        //Call to LibroCAD
-
-        _ILibroCAD.PuntuarLibro (libroEN);
-}
-
 public LibroEN ReadOID (int libroID
                         )
 {

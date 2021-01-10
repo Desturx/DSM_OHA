@@ -34,16 +34,16 @@ private string fotoautor;
 
 
 /**
- *	Atributo obra
+ *	Atributo autorID
  */
-private System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> obra;
+private int autorID;
 
 
 
 /**
- *	Atributo autorID
+ *	Atributo obra
  */
-private int autorID;
+private System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> obra;
 
 
 
@@ -74,14 +74,14 @@ public virtual string Fotoautor {
 
 
 
-public virtual System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> Obra {
-        get { return obra; } set { obra = value;  }
+public virtual int AutorID {
+        get { return autorID; } set { autorID = value;  }
 }
 
 
 
-public virtual int AutorID {
-        get { return autorID; } set { autorID = value;  }
+public virtual System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.LibroEN> Obra {
+        get { return obra; } set { obra = value;  }
 }
 
 

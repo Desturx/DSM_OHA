@@ -129,7 +129,7 @@
 			
 		  			
 						<many-to-one name="Aut_lib" class="BookReViewGenNHibernate.EN.BookReview.AutorEN" >	
-								<column name="FK_autorID_idAutor_0"/> 
+								<column name="FK_autorIDAutor_idAutor_0"/> 
 						</many-to-one>
 											 					
 					

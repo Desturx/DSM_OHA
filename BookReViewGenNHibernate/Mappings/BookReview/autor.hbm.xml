@@ -7,7 +7,7 @@
 			
 				<class name="AutorEN" table="Autor"> 
 				  	
-						<id name="AutorID" column="autorID" type="integer"> 
+						<id name="AutorID" column="autorIDAutor" type="integer"> 
 							<generator class="hilo"/>
 						</id>
 			
@@ -30,17 +30,17 @@
 			
 			
 			
+			
 		  			
 						<bag name="Obra" >
 							<key>
 							
 								
-								<column name="FK_autorID_idAutor_0"/>
+								<column name="FK_autorIDAutor_idAutor_0"/>
 					      	</key>
 							<one-to-many class="BookReViewGenNHibernate.EN.BookReview.LibroEN"/>
 					    </bag>
 					
-			
 					
 					
 					

@@ -24,9 +24,6 @@ void BorrarLibro (int libroID
 
 int PublicarLibro (LibroEN libro);
 
-void PuntuarLibro (LibroEN libro);
-
-
 LibroEN ReadOID (int libroID
                  );
 

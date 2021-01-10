@@ -265,59 +265,6 @@ public int PublicarLibro (LibroEN libro)
         return libro.LibroID;
 }
 
-public void PuntuarLibro (LibroEN libro)
-{
-        try
-        {
-                SessionInitializeTransaction ();
-                LibroEN libroEN = (LibroEN)session.Load (typeof(LibroEN), libro.LibroID);
-
-                libroEN.Nombre = libro.Nombre;
-
-
-                libroEN.Genero = libro.Genero;
-
-
-                libroEN.Fechapubli = libro.Fechapubli;
-
-
-                libroEN.Idioma = libro.Idioma;
-
-
-                libroEN.Portada = libro.Portada;
-
-
-                libroEN.Puntuacion = libro.Puntuacion;
-
-
-                libroEN.Enlacedecompra = libro.Enlacedecompra;
-
-
-                libroEN.Paginas = libro.Paginas;
-
-
-                libroEN.Precio = libro.Precio;
-
-
-                libroEN.Compras = libro.Compras;
-
-                session.Update (libroEN);
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is BookReViewGenNHibernate.Exceptions.ModelException)
-                        throw ex;
-                throw new BookReViewGenNHibernate.Exceptions.DataLayerException ("Error in LibroCAD.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-}
 //Sin e: ReadOID
 //Con e: LibroEN
 public LibroEN ReadOID (int libroID

@@ -146,6 +146,7 @@
 			
 			
 			
+			<Compile Include="CEN\BookReview\LibroCEN_PuntuarLibro.cs" />
 			
 	<Compile Include="EN\BookReview\SolicitudEN.cs" />
 	<Compile Include="CEN\BookReview\SolicitudCEN.cs" />
