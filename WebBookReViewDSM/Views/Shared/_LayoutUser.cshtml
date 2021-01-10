@@ -1,6 +1,12 @@
 ﻿@using Microsoft.AspNet.Identity
 @using BookReViewGenNHibernate.EN.BookReview;
+@{ int idUsu=0;
+    if (Session["Usuario"] != null)
+    {
+        idUsu = ((UsuarioEN)Session["Usuario"]).UsuarioID;
 
+    }
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,13 +34,12 @@
                     @if (Session["Usuario"] != null)
                     {
 
-                            <li>@Html.ActionLink("Busqueda", "busqueda", "Busqueda")</li>
-                            <li>@Html.ActionLink("perfil", "perfil", "Perfil")</li>
+                            <li>@Html.ActionLink("Busqueda", "busqueda", "Home")</li>
+                            <li><a href="~/Usuario/Index_user/@idUsu">Perfil</a></li>
                     }
                     else
                     {
-                            <li>@Html.ActionLink("BookReView", "index", "Index")</li>
-                            <li>@Html.ActionLink("Busqueda", "busqueda", "Busqueda")</li>
+                            <li>@Html.ActionLink("Busqueda", "busqueda", "Home")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -45,12 +50,7 @@
         @RenderBody()
         <hr />
 
-        @{
-            if (Session["Usuario"] != null)
-            {
-                <h1> PRUEBAAAA: @{((UsuarioEN)Session["Usuario"]).GetType();}</h1>
-            }
-        }
+        
     </div>
 
     @Scripts.Render("~/bundles/jquery")

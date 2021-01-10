@@ -167,6 +167,15 @@ namespace WebBookReViewDSM.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult decrementar(int id) {
+            SessionInitialize();
+            LibroCAD libCAD = new LibroCAD(session);
+            LibroCEN cen = new LibroCEN(libCAD);
+            cen.PuntuarLibro(id,1);
+            SessionClose();
+            return View();
+        }
+
         // POST: Libro/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
