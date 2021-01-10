@@ -435,6 +435,9 @@
     <Content Include="Views\Home\Shared_Clubs.cshtml" />
     <Content Include="Views\Usuario\Index_user.cshtml" />
     <Content Include="Views\Usuario\Details_User.cshtml" />
+    <Content Include="Views\Libro\libro_user.cshtml" />
+    <Content Include="Views\Libro\Shared_comentarios.cshtml" />
+    <Content Include="Views\Libro\Shared_Clubs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -40,5 +40,8 @@ void AnyadirClub (int p_Usuario_OID, System.Collections.Generic.IList<int> p_clu
 void AnyadirLibro (int p_Usuario_OID, System.Collections.Generic.IList<int> p_libros_OIDs);
 
 System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> ReadFilter ();
+
+
+System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> GetUsuarioByEmail (string p_mail);
 }
 }

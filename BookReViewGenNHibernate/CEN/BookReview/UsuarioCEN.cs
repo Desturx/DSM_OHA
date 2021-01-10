@@ -85,40 +85,6 @@ public void Destroy (int usuarioID
         _IUsuarioCAD.Destroy (usuarioID);
 }
 
-public int Registro (String p_password, string p_mail, string p_fotoperfil, string p_nombre, double p_dineroventa)
-{
-        UsuarioEN usuarioEN = null;
-        int oid;
-
-        //Initialized UsuarioEN
-        usuarioEN = new UsuarioEN ();
-        usuarioEN.Password = Utils.Util.GetEncondeMD5 (p_password);
-
-        usuarioEN.Mail = p_mail;
-
-        usuarioEN.Fotoperfil = p_fotoperfil;
-
-        usuarioEN.Nombre = p_nombre;
-
-        usuarioEN.Dineroventa = p_dineroventa;
-
-        //Call to UsuarioCAD
-
-        oid = _IUsuarioCAD.Registro (usuarioEN);
-        return oid;
-}
-
-public string Login (int p_mail, string p_password)
-{
-        string result = null;
-        UsuarioEN en = _IUsuarioCAD.ReadOIDDefault (p_mail);
-
-        if (en != null && en.Password.Equals (Utils.Util.GetEncondeMD5 (p_password)))
-                result = this.GetToken (en.UsuarioID);
-
-        return result;
-}
-
 public UsuarioEN ReadOID (int usuarioID
                           )
 {
@@ -150,6 +116,10 @@ public void AnyadirLibro (int p_Usuario_OID, System.Collections.Generic.IList<in
 public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> ReadFilter ()
 {
         return _IUsuarioCAD.ReadFilter ();
+}
+public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> GetUsuarioByEmail (string p_mail)
+{
+        return _IUsuarioCAD.GetUsuarioByEmail (p_mail);
 }
 
 
@@ -197,9 +167,6 @@ public int CheckToken (string token)
 
         return result;
 }
-public int CheckToken (string token)
-{
-        int result = -1;
 
 
 public long ObtenerUSUARIOID (string decodedToken)

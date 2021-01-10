@@ -26,6 +26,8 @@ namespace WebBookReViewDSM.Controllers
             return View(listViewModel);
         }
 
+        
+
         // GET: Comentario/Details/5
         public ActionResult Details(int id)
         {

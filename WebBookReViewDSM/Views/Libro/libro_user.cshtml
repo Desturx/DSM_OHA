@@ -1,0 +1,59 @@
+﻿@model WebBookReViewDSM.Models.LibroViewModel
+@{
+    ViewBag.Title = "Libro";
+
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<div style="        position: absolute;
+        z-index: -1;
+        top: 90%;
+        left: 0;
+        width: 100%;
+        height: 47%;
+        background-image: url(https://kawaii.kawaii.at/images/product_images/big_images/vintage-story-book-pages-by-Robert-Kaufman-234505-1.jpg)"><h1 style="position:absolute; left:25%;bottom:0; font-size:4em; background-color:lightyellow;">Comentarios</h1></div>
+<div style="display:flex; flex-direction:row; margin-top:4em">
+    <div>
+        <img width=250 height=350 src="~/imgs/@Html.DisplayFor(model => model.portada)" />
+    </div>
+    <div style="display:flex; flex-direction:column; width:70%">
+        <div style="display:flex; flex-direction:row">
+            <h1>@Html.DisplayFor(model => model.nombre)</h1>
+            <p>@Html.DisplayFor(model => model.puntuacion)</p>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+        </div>
+        <h1>Sinopsis</h1>
+        <p>@Html.DisplayFor(model => model.nombre)</p>
+    </div>
+    <div style="display:flex; flex-direction:column">
+        <p>Género: @Html.DisplayFor(model => model.genero)</p>
+        <p>Autor: @Html.DisplayFor(model => model.autorname)</p>
+        <p>Páginas: @Html.DisplayFor(model => model.paginas)</p>
+    </div>
+</div>
+<div>
+    <div>
+        <button class="btn-default" type="button" name="Favoritos">Escribe una review</button>
+        <button class="btn-default" type="button" name="Favoritos">Crear Club Lectura @Html.DisplayNameFor(model => model.precio)</button>
+    </div>
+    <div>
+        <button class="btn-default" type="button" name="Favoritos">Escribe una review</button>
+        <button class="btn-default" type="button" name="Favoritos">Comprar @Html.DisplayFor(model => model.precio)</button>
+    </div>
+</div>
+
+@{
+    Html.RenderAction("Shared_Clubs", "Libro");
+}
+<!-- partial view for each   if LibroID == ClubID  mostrar clubs hasta 3???-->
+@{
+    Html.RenderAction("Shared_comentarios", "Libro");
+}
+
+</html>

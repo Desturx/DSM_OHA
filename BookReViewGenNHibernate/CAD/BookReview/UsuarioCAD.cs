@@ -389,5 +389,35 @@ public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.Us
 
         return result;
 }
+public System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> GetUsuarioByEmail (string p_mail)
+{
+        System.Collections.Generic.IList<BookReViewGenNHibernate.EN.BookReview.UsuarioEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM UsuarioEN self where FROM UsuarioEN as usu where usu.Mail = :p_mail";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENgetUsuarioByEmailHQL");
+                query.SetParameter ("p_mail", p_mail);
+
+                result = query.List<BookReViewGenNHibernate.EN.BookReview.UsuarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is BookReViewGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new BookReViewGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }
