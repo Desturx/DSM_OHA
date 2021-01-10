@@ -1,0 +1,18 @@
+﻿@model IEnumerable<WebBookReViewDSM.Models.UsuarioViewModel> 
+
+@{
+    ViewBag.Title = "Usuario";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Mi perfil</h2>
+
+<div class="row">
+    <a href="~/Usuario/Index_user"><button type="button" class="btn btn-default">General</button></a>
+    <a href="~/Usuario/Libros_user"><button type="button" class="btn btn-default">Biblioteca</button></a>
+    <a href="~/Usuario/Amigos_user"><button type="button" class="btn btn-default">Amigos</button></a>
+    <a href="~/Usuario/Comentarios_user"><button type="button" class="btn btn-default">Comentarios</button></a>
+    <a href="~/Usuario/Circulos_user"><button type="button" class="btn btn-default" >Circulos lectura</button></a>
+    <a href="~/Home/Index"><button type="button" class="btn btn-default">Administrar</button></a>
+</div>
+<h1> Aqui vuestro titulo (LIBROS, coment)</h1>

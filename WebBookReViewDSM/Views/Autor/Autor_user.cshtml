@@ -1,0 +1,29 @@
+﻿@model WebBookReViewDSM.Models.AutorViewModel
+
+@{
+    ViewBag.Title = "Autor_user";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Html.DisplayFor(model => model.nombre)</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
+            <img height="140" width="140" src="~/imgs/@Html.DisplayFor(model => model.fotoautor)" />
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
+            
+            <p>
+                Nacido el @Html.DisplayFor(model => model.nacimiento), es un autor que ha escrito diversos libros
+                , los cuales no han dejado indiferente a nadie. Ha sido muy alabado tanto por los usuarios
+                como por la crítica internacional, y su nombre suena para ser el ganador de distintos premios a nivel tanto nacional como internacional.
+                Sus libros están teniendo una gran acogida entre nuestros usuarios.
+            </p>
+        </div>
+    </div><!--el row-->
+    @{
+        Html.RenderAction("Shared_Libro", "Autor");
+    }
+</div>
+

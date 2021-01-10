@@ -45,6 +45,11 @@ namespace WebBookReViewDSM.Controllers
         }
 
 
+        public ActionResult index_user()
+        {
+            return View();
+        }
+
         // POST: Compra/Create
         [HttpPost]
         public ActionResult Create(CompraViewModel com)
@@ -54,6 +59,27 @@ namespace WebBookReViewDSM.Controllers
 
                 CompraCEN comCEN = new CompraCEN();
                 comCEN.CreaCompra(com.compradorId, com.LibroId, com.tipo_pago, com.infoTarjeta, com.fecha, com.terminal, com.comercio);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+        [HttpPost]
+        public ActionResult index_user(CompraViewModel com)
+        {
+            try
+            {
+                string id = Request.QueryString["libro"];
+                int variablelibro = Int32.Parse(id);
+                string id2 = Request.QueryString["user"];
+                int variableuser = Int32.Parse(id2);
+                CompraCEN comCEN = new CompraCEN();
+                comCEN.CreaCompra(variableuser,variablelibro, com.tipo_pago, com.infoTarjeta, com.fecha, com.terminal, com.comercio);
 
                 return RedirectToAction("Index");
             }

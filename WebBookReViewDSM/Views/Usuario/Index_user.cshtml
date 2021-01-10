@@ -1,19 +1,35 @@
-﻿@model IEnumerable<WebBookReViewDSM.Models.UsuarioViewModel> 
-
+﻿
+@model WebBookReViewDSM.Models.UsuarioViewModel
+@using BookReViewGenNHibernate.EN.BookReview;
 @{
-    ViewBag.Title = "Usuario";
+    ViewBag.Title = "Tu perfil";
+
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
+@{
+    int idUsu = 0;
+    string email = "";
+    double dineroventa = 0;
+    string foto = "";
+
+    if (Session["Usuario"] != null)
+    {
+        idUsu = ((UsuarioEN)Session["Usuario"]).UsuarioID;
+        email = ((UsuarioEN)Session["Usuario"]).Mail;
+        dineroventa = ((UsuarioEN)Session["Usuario"]).Dineroventa;
+        foto = ((UsuarioEN)Session["Usuario"]).Fotoperfil;
+    }
+
+}
 <h2>Mi perfil</h2>
 
 <div class="row">
-    <a href="~/Usuario/Index_user"><button type="button" class="btn btn-default">General</button></a>
-    <a href="~/Usuario/Libros_user"><button type="button" class="btn btn-default">Biblioteca</button></a>
-    <a href="~/Usuario/Amigos_user"><button type="button" class="btn btn-default">Amigos</button></a>
-    <a href="~/Usuario/Comentarios_user"><button type="button" class="btn btn-default">Comentarios</button></a>
-    <a href="~/Usuario/Circulos_user"><button type="button" class="btn btn-default" >Circulos lectura</button></a>
+    <a href="~/Usuario/Index_user?id=@Html.DisplayFor(model => model.usuarioID)"><button type="button" class="btn btn-default">General</button></a>
+    <a href="~/Usuario/Libros_user?id=@Html.DisplayFor(model => model.usuarioID)"><button type="button" class="btn btn-default">Biblioteca</button></a>
+    <a href="~/Usuario/Amigos_user?id=@Html.DisplayFor(model => model.usuarioID)"><button type="button" class="btn btn-default">Amigos</button></a>
+    <a href="~/Usuario/Comentarios_user?id=@Html.DisplayFor(model => model.usuarioID)"><button type="button" class="btn btn-default">Comentarios</button></a>
+    <a href="~/Usuario/Circulos_user?id=@Html.DisplayFor(model => model.usuarioID)"><button type="button" class="btn btn-default">Circulos lectura</button></a>
     <a href="~/Home/Index"><button type="button" class="btn btn-default">Administrar</button></a>
 </div>
 <h1> Aqui vuestro titulo (LIBROS, coment)</h1>
-    

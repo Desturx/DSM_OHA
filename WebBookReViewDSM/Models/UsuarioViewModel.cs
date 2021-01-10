@@ -49,7 +49,5 @@ namespace WebBookReViewDSM.Models
         public Double dineroventa { get; set; }
 
 
-
-
     }
 }

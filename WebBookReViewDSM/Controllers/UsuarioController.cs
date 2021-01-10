@@ -8,6 +8,7 @@ using BookReViewGenNHibernate.CEN.BookReview;
 using BookReViewGenNHibernate.EN.BookReview;
 using WebBookReViewDSM.Assemblers;
 using WebBookReViewDSM.Models;
+using System.IO;
 
 namespace WebBookReViewDSM.Controllers
 {
@@ -27,6 +28,21 @@ namespace WebBookReViewDSM.Controllers
             return View(usuviewmodel); //cuando nos vamos a la vista
         }
 
+        
+
+        public ActionResult Libros_user()
+        {
+            SessionInitialize();
+            Club_lecCAD clubCAD = new Club_lecCAD(session);
+            Club_lecCEN clubCEN = new Club_lecCEN(clubCAD);
+
+            IList<Club_lecEN> clubEN = clubCEN.ReadAll(0, 1);
+            IEnumerable<Club_lecViewModel> listViewModel = new Club_lecAssembler().ConvertListENToModel(clubEN).ToList();
+            SessionClose();
+
+            return View(listViewModel);
+        }
+
         // GET: Usuario/Details/id
         public ActionResult Details(int id)
         {
@@ -39,6 +55,68 @@ namespace WebBookReViewDSM.Controllers
 
             return View(usu);
         }
+        public ActionResult Amigos_user(int id)
+        {
+            SessionInitialize(); //no se navega por en EN pero se hace por si se mueve por ens
+            UsuarioCAD usuCAD = new UsuarioCAD(session); //el session se crea dentro del initialize por herencia del basic
+            UsuarioCEN usuCEN = new UsuarioCEN(usuCAD);
+
+            UsuarioEN usuPrueba = usuCEN.ReadOID(id);
+            IList<UsuarioEN> usuEN = usuCEN.ReadAll(0, -1);
+            if (usuEN.Contains(usuPrueba))
+            {
+                usuEN.Remove(usuPrueba);
+            }
+            IEnumerable<UsuarioViewModel> usuviewmodel = new UsuarioAssembler().ConvertListENToModel(usuEN).ToList();
+            SessionClose();
+
+            return View(usuviewmodel); //cuando nos vamos a la vista
+        }
+        public ActionResult UploadFile(HttpPostedFileBase file)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (file != null)
+                    {
+                        string ruta = Path.Combine(Server.MapPath("~/imgs"), Path.GetFileName(file.FileName));
+                        file.SaveAs(ruta);
+                    }
+                    ViewBag.FileStatus = "archivo subido correctamente";
+                }
+                catch (Exception e)
+                {
+                    ViewBag.FileStatus = "error al subir una imagen";
+                }
+            }
+            return View("Index");
+        }
+        public ActionResult Lista_user()
+        {
+            SessionInitialize(); //no se navega por en EN pero se hace por si se mueve por ens
+            ListaCAD lisCAD = new ListaCAD(session); //el session se crea dentro del initialize por herencia del basic
+            ListaCEN lisCEN = new ListaCEN(lisCAD);
+
+            IList<ListaEN> lisEN = lisCEN.ReadAll(0, -1);
+            IEnumerable<ListaViewModel> lisviewmodel = new ListaAssembler().ConvertListENToModel(lisEN).ToList();
+            SessionClose();
+
+            return View(lisviewmodel); //cuando nos vamos a la vista
+        }
+
+        public ActionResult Index_user(int id)
+        {
+            UsuarioViewModel usu = null;
+
+            SessionInitialize();
+            UsuarioEN usuEN = new UsuarioCAD(session).ReadOIDDefault(id);
+            usu = new UsuarioAssembler().ConvertENToModelUI(usuEN);
+            SessionClose();
+
+            return View(usu);
+        }
+
 
         public ActionResult Details_User(string email)
         {
@@ -78,6 +156,11 @@ namespace WebBookReViewDSM.Controllers
             return View();
         }
 
+        public ActionResult Create_admin()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         public ActionResult Create(UsuarioViewModel usu)
@@ -93,6 +176,22 @@ namespace WebBookReViewDSM.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        public ActionResult Create_admin(UsuarioViewModel usu)
+        {
+            try
+            {
+                AdminCEN usuCEN = new AdminCEN();
+                usuCEN.New_(usu.password, usu.mail, usu.fotoperfil, usu.nombre, usu.dineroventa);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
 
 
         // GET: Usuario/Edit/5

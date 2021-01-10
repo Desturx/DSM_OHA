@@ -1,20 +1,39 @@
 ﻿@model WebBookReViewDSM.Models.LibroViewModel
+@using BookReViewGenNHibernate.EN.BookReview;
 @{
     ViewBag.Title = "Libro";
 
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
+@{
+    int idUsu = 0;
+    string email = "";
+    double dineroventa = 0;
+    string foto = "";
+
+    if (Session["Usuario"] != null)
+    {
+
+
+        idUsu = ((UsuarioEN)Session["Usuario"]).UsuarioID;
+        email = ((UsuarioEN)Session["Usuario"]).Mail;
+        dineroventa = ((UsuarioEN)Session["Usuario"]).Dineroventa;
+        foto = ((UsuarioEN)Session["Usuario"]).Fotoperfil;
+
+    }
+
+}
+
 <!DOCTYPE html>
 <html>
-<div style="position: absolute;
-        z-index: -1;
-        top: 90%;
-        left: 0;
-        width: 100%;
-        height: 47%;
-        background-image: url(https://kawaii.kawaii.at/images/product_images/big_images/vintage-story-book-pages-by-Robert-Kaufman-234505-1.jpg)"><h1 style="position:absolute; left:25%;bottom:0; font-size:4em; background-color:lightyellow;">Comentarios</h1></div>
-<div style="display:flex; flex-direction:row; margin-top:4em">
+<div style="        display: flex;
+        flex-direction: row;
+        margin-top: 4em;
+        margin-bottom:1em;
+        padding:2em;
+        background-image: url(https://i.pinimg.com/originals/d7/39/53/d7395358fcd0b0c671bd0ae05b5ba5eb.jpg);
+        border-radius: 2em">
     <div>
         <img width=250 height=350 src="~/imgs/@Html.DisplayFor(model => model.portada)" />
     </div>
@@ -33,27 +52,40 @@
     </div>
     <div style="display:flex; flex-direction:column">
         <p>Género: @Html.DisplayFor(model => model.genero)</p>
-        <p>Autor: @Html.DisplayFor(model => model.autorname)</p>
+       <a href="~/Autor/Autor_user/@Html.DisplayFor(model => model.idautor)"></a> <p>Autor: @Html.DisplayFor(model => model.autorname)</p>
         <p>Páginas: @Html.DisplayFor(model => model.paginas)</p>
+        <p>Idioma: @Html.DisplayFor(model => model.idioma)</p>
     </div>
 </div>
 <div>
-    <div>
-        <button class="btn-default" type="button" name="Favoritos">Escribe una review</button>
-        <button class="btn-default" type="button" name="Favoritos">Crear Club Lectura @Html.DisplayNameFor(model => model.precio)</button>
-    </div>
-    <div>
-        <button class="btn-default" type="button" name="Favoritos">Escribe una review</button>
-        <a href="~/Compra/index_user.cshtml"><button class="btn-default" type="button" name="Favoritos">Comprar</button></a>
+    <div style="margin:auto">
+        <a href="~/Comentario/Create"><button class="btn-default" type="button" name="Favoritos" style="background-color:lightyellow;padding:1em; margin:1em; border-radius:1em;width:25%; font-size:1.5em">Escribe una review</button></a>
+        <a href="~/Club_lec/Create"> <button class="btn-default" type="button" name="Favoritos" style="background-color:lightyellow;padding:1em; margin:1em; border-radius:1em; font-size:1.5em; width:25%;">Crear Club Lectura</button></a>
+        <a href="~/Compra/index_user?libro=@Html.DisplayFor(model => model.libroID)&user=@idUsu" ><button class="btn-default" type="button" name="Favoritos" style="background-color:lightyellow;padding:1em; margin:1em;width:25%; border-radius:1em; font-size:1.5em">Comprar</button></a>
     </div>
 </div>
+<div>
 
-@{
-    Html.RenderAction("Shared_Clubs", "Libro");
-}
-<!-- partial view for each   if LibroID == ClubID  mostrar clubs hasta 3???-->
-@{
-    Html.RenderAction("Shared_comentarios", "Libro");
-}
+
+
+    @{
+        Html.RenderAction("Shared_Clubs", "Libro");
+    }
+</div>
+
+<div style="position: absolute;
+        z-index: -1;
+        bottom:0;
+        top:110%;
+        left: 0;
+        width: 100%;
+        height: 47%;
+        background-image: url(https://kawaii.kawaii.at/images/product_images/big_images/vintage-story-book-pages-by-Robert-Kaufman-234505-1.jpg)">
+
+    <!-- partial view for each   if LibroID == ClubID  mostrar clubs hasta 3???-->
+    @{
+        Html.RenderAction("Shared_comentarios", "Libro");
+    }
+</div>
 
 </html>

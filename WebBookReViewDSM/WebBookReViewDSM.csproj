@@ -404,7 +404,6 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Lista\Index.cshtml" />
     <Content Include="Views\Usuario\Create.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
@@ -432,11 +431,10 @@
     <Content Include="Views\Comentario\Create.cshtml" />
     <Content Include="Views\Compra\View.cshtml" />
     <Content Include="Views\Lista\Details.cshtml" />
-    <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\Home\Home_usuario.cshtml" />
     <Content Include="Views\Club_lec\Shared_Clubs.cshtml" />
     <Content Include="Views\Home\Shared_Clubs.cshtml" />
-    <Content Include="Views\Usuario\Index_user.cshtml" />
+    <Content Include="Views\Usuario\Index_aaser.cshtml" />
     <Content Include="Views\Usuario\Details_User.cshtml" />
     <Content Include="Views\Libro\libro_user.cshtml" />
     <Content Include="Views\Libro\Shared_comentarios.cshtml" />
@@ -446,6 +444,17 @@
     <Content Include="Views\Autor\Edit.cshtml" />
     <Content Include="Views\Autor\Index.cshtml" />
     <Content Include="Views\Compra\index_user.cshtml" />
+    <Content Include="Views\Usuario\Libros_user.cshtml" />
+    <Content Include="Views\Usuario\Index_user.cshtml" />
+    <Content Include="Views\Home\Busqueda.cshtml" />
+    <Content Include="Views\Usuario\Create_admin.cshtml" />
+    <Content Include="Views\Home\ResBusqueda.cshtml" />
+    <Content Include="Views\Autor\Shared_Libro.cshtml" />
+    <Content Include="Views\Autor\Autor_user.cshtml" />
+    <Content Include="Views\Usuario\Amigos_user.cshtml" />
+    <Content Include="Views\Usuario\Lista_user.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,88 @@
+﻿
+@model IEnumerable<WebBookReViewDSM.Models.LibroViewModel>
+
+@{
+    ViewBag.Title = "Home Page";
+
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<h3 style="font-size:4em">Libros disponibles</h3>
+<div style="display: flex; flex-direction: row">
+    @{
+        int count = 0;
+        string path = HttpContext.Current.Request.Url.AbsolutePath;
+        string[] cosas = path.Split('/');
+    }
+    
+        <style>
+            #my-carousel{margin:auto;}
+        </style>
+            <div id="my-carousel" class="carousel slide img-thumbnail push-down-1" data-ride="carousel" data-interval="3000">
+                <ol class="carousel-indicators">
+                    @{int index = 0; }
+                    @foreach (var item in Model)
+                    {
+                        if (count < 3 && cosas[cosas.Length - 1] == item.idautor.ToString())
+                        {
+                            if (index == 0)
+                            {
+                                <li data - target="#my-carousel" data-slide-to=@index.ToString() class="active"></li>
+                            }
+                            else
+                            {
+                                <li data - target="#my-carousel" data-slide-to=@index.ToString()></li>
+                            }
+
+                            index++;
+                        }
+                    }
+                </ol>
+                <div class="carousel-inner">
+                    @{ index = 0;}
+                    @foreach (var item in Model)
+                    {
+                        if (cosas[cosas.Length - 1] == item.idautor.ToString())
+                        {
+                            if (index == 0)
+                            {
+                                <div class="item active">
+                                    <a href="~/libro/libro_user/@Html.DisplayFor(modelItem => item.libroID)">
+                                        <img class="d-block w-100" src="~/imgs/@Html.DisplayFor(modelItem => item.portada)" height="240" width="240">
+                                        <h3>@item.nombre</h3>
+                                        <p>Género: @item.genero</p>
+                                        <p>Número de páginas: @item.paginas</p>
+                                        <p>Puntuación: @item.puntuacion</p>
+                                        <p>Precio de venta: @item.precio</p>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="item">
+                                    <a href="~/libro/libro_user/@Html.DisplayFor(modelItem => item.libroID)">
+                                        <img class="d-block w-100" src="~/imgs/@Html.DisplayFor(modelItem => item.portada)" height="240" width="240">
+                                        <h3>@item.nombre</h3>
+                                        <p>Género: @item.genero</p>
+                                        <p>Número de páginas: @item.paginas</p>
+                                        <p>Puntuación: @item.puntuacion</p>
+                                        <p>Precio de venta: @item.precio</p>
+                                </div>
+
+                            }
+                            index++;
+                        }
+
+                    }
+                </div>
+                <a class="left carousel-control" href="#my-carousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+                <a class="right carousel-control" href="#my-carousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Siguiente</span>
+                </a>
+            </div>
+            
+        
+</div>  

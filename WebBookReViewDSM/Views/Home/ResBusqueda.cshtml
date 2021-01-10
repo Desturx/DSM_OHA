@@ -1,0 +1,108 @@
+﻿
+@model IEnumerable<WebBookReViewDSM.Models.LibroViewModel>
+
+@using BookReViewGenNHibernate.EN.BookReview;
+
+@{
+    ViewBag.Title = "Home Page";
+
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<h1 style="font-size:4em">Resultados de la busqueda</h1>
+@{
+    int count = 0;
+
+    string lib = Request.QueryString["lib"];
+    string genero = Request.QueryString["genero"];
+    string autor = Request.QueryString["aut"];
+    int precio = Request.QueryString["pre"].AsInt();
+    int idUsu=0;
+    if (Session["Usuario"] != null)
+    {
+        idUsu = ((UsuarioEN)Session["Usuario"]).UsuarioID;
+
+    }
+}
+
+<div>
+    @foreach (var item in Model)
+    {
+        if (item.autorname.ToLower().Contains(autor.ToLower()) && item.nombre.ToLower().Contains(lib.ToLower()))
+        {
+
+            if (genero != "Vacio")
+            {
+                if (genero == item.genero)
+                {
+                    if (item.precio <= precio)
+                    {
+                        <div style="display: flex;
+                            flex-direction: row;
+                            background-image: url(https://i.pinimg.com/originals/d7/39/53/d7395358fcd0b0c671bd0ae05b5ba5eb.jpg);
+                            border-radius: 2em;
+                            margin-bottom:1em;
+                            padding: 2em;">
+                            <div style="margin-right:2em;display:flex;flex-direction:column;">
+                                <a href="~/libro/libro_user/@Html.DisplayFor(modelItem => item.libroID)"> <img height="300" width="200" src="~/imgs/@Html.DisplayFor(modelItem => item.portada)" /> </a>
+                                <p style="font-size:1.2em"><b>Puntuación general</b>   @Html.DisplayFor(modelItem => item.puntuacion)</p>
+                            </div>
+                            <div>
+                                <h1 style="font-size:4em;">@Html.DisplayFor(modelItem => item.nombre)</h1>
+                                <a href="~/Autor/Autor_user/@Html.DisplayFor(modelItem => item.idautor)" style="font-size:2em;"><p>Autor: @Html.DisplayFor(modelItem => item.autorname)</p></a>
+                                <p style="font-size:2em;">Género: @Html.DisplayFor(modelItem => item.genero)</p>
+                                <p style="font-size:2em;">Precio: @Html.DisplayFor(modelItem => item.precio)</p>
+                                <a href="~/Compra/index_user?libro=@Html.DisplayFor(modelItem => item.libroID)&user=@idUsu"><button class="btn-default" type="button" name="Favoritos" style="border-radius:2em; padding:1em;">Comprar</button></a>
+
+                            </div>
+
+                        </div>
+
+                        count++;
+                    }
+
+                }
+
+
+            }
+            else
+            {
+                if (item.precio <= precio)
+                {
+                    <div style="        display: flex;
+        flex-direction: row;
+        margin-bottom: 1em;
+        background-image: url(https://i.pinimg.com/originals/d7/39/53/d7395358fcd0b0c671bd0ae05b5ba5eb.jpg);
+        border-radius: 2em;
+        padding: 2em;">
+                            <div style="margin-right:2em;display:flex;flex-direction:column;">
+                                <a href="~/libro/libro_user/@Html.DisplayFor(modelItem => item.libroID)"> <img height="300" width="200" src="~/imgs/@Html.DisplayFor(modelItem => item.portada)" /> </a>
+                                <p style="font-size:1.2em"><b>Puntuación general</b>   @Html.DisplayFor(modelItem => item.puntuacion)</p>
+                            </div>
+                            <div>
+                                <h1 style="font-size:4em;">@Html.DisplayFor(modelItem => item.nombre)</h1>
+                                <a href="~/Autor/Autor_user/@Html.DisplayFor(modelItem => item.idautor)" style="font-size:2em;"><p>Autor: @Html.DisplayFor(modelItem => item.autorname)</p></a>
+                                <p style="font-size:2em;">Género: @Html.DisplayFor(modelItem => item.genero)</p>
+                                <p style="font-size:2em;">Precio: @Html.DisplayFor(modelItem => item.precio)</p>
+                                <a href="~/Compra/index_user?libro=@Html.DisplayFor(modelItem => item.libroID)&user=@idUsu"><button class="btn-default" type="button" name="Favoritos" style="border-radius:2em; padding:1em;">Comprar</button></a>
+
+                            </div>
+
+                        </div>
+
+                    count++;
+                }
+
+            }
+
+        }
+
+
+
+
+    }
+    @if (count == 0)
+    {
+        <h1>No hay resultados para tu búsqueda</h1>
+       <a href="~/Home/Busqueda.cshtml"><h2> Prueba con otras especificaciones </h2></a>
+    }
+</div>  

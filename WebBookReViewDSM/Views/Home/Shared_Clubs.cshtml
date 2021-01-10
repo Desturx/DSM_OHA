@@ -5,11 +5,13 @@
     ViewBag.Title = "Home Page";
 
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
+
 }
 <h1 style="font-size:4em">Circulo de lectura recomendado</h1>
 <div style="display: flex; flex-direction: row">
     @{
         int count = 0;
+
     }
     @foreach (var item in Model)
     {
@@ -17,7 +19,7 @@
         {
             <div class="row" style="display: flex; flex-direction: row">
                 <div class="row" style="display: flex; flex-direction: row">
-                    <img height="300" width="200" src="~/imgs/@Html.DisplayFor(modelItem => item.lecturatotal.Portada)" />
+                    <a href="~/Libro/libro_user/@Html.DisplayFor(modelItem => item.lecturatotal.LibroID)">  <img height="300" width="200" src="~/imgs/@Html.DisplayFor(modelItem => item.lecturatotal.Portada)" /></a>
                     <div class="col-lg-12" style="width: 10em; font-size: 1.2em;">
                         <p><b style="font-size:1em">Nombre:</b>  @Html.DisplayFor(modelItem => item.nombrelibro)</p>
                         <p><b style="font-size:1em">Genero:</b>  @Html.DisplayFor(modelItem => item.lecturatotal.Genero)</p>

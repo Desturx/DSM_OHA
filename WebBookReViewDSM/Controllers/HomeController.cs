@@ -25,6 +25,18 @@ namespace WebBookReViewDSM.Controllers
             SessionClose();
             return View(list);
         }
+        public ActionResult ResBusqueda()
+        {
+            SessionInitialize();
+            LibroCAD libroCAD = new LibroCAD(session);
+            LibroCEN libCEN = new LibroCEN(libroCAD);
+
+            List<LibroEN> listaArt = libCEN.ReadAll(0, -1).ToList();
+            LibroAssembler lass = new LibroAssembler();
+            IEnumerable<LibroViewModel> list = lass.ConvertListENToModel(listaArt).ToList();
+            SessionClose();
+            return View(list);
+        }
 
         public ActionResult Shared_Clubs()
         {
@@ -37,6 +49,10 @@ namespace WebBookReViewDSM.Controllers
             SessionClose();
 
             return View(listViewModel);
+        }
+        public ActionResult Busqueda() {
+
+            return View();
         }
 
     }

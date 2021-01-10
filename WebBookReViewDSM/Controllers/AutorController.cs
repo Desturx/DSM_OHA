@@ -131,5 +131,28 @@ namespace WebBookReViewDSM.Controllers
                 return View();
             }
         }
+
+        public ActionResult Shared_Libro()
+        {
+            SessionInitialize(); //no se navega por en EN pero se hace por si se mueve por ens
+            LibroCAD libCAD = new LibroCAD(session); //el session se crea dentro del initialize por herencia del basic
+            LibroCEN libCEN = new LibroCEN(libCAD);
+
+            IList<LibroEN> listEN = libCEN.ReadAll(0, -1);
+            IEnumerable<LibroViewModel> listviewmodel = new LibroAssembler().ConvertListENToModel(listEN).ToList();
+            SessionClose();
+
+            return View(listviewmodel); //cuando nos vamos a la vista
+        }
+
+        public ActionResult Autor_user(int id)
+        {
+            AutorViewModel aut = null;
+            SessionInitialize();
+            AutorEN autEN = new AutorCAD(session).ReadOIDDefault(id);
+            aut = new AutorAssembler().ConvertEnToModelUI(autEN);
+            SessionClose();
+            return View(aut);
+        }
     }
 }
